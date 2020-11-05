@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Backend.DAL
 {
-    class UnitOfWork<T> : IDisposable where T : class
+    public class UnitOfWork<T> : IDisposable where T : class
     {
         private readonly BDContext context;
         public IDALGeneric<T> genericDAL;
