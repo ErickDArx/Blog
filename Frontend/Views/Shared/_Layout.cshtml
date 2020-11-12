@@ -3,7 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
+    <title>@ViewBag.Title - Blog</title>
+=======
     <title>@ViewBag.Title - CRGaming</title>
+>>>>>>> a44006aaacbfcf29656c4befaef4d5266f75a2ef
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -11,6 +15,20 @@
 
     <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color: #0F3460">
         <div class="container">
+<<<<<<< HEAD
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Noticias", "Index", "Index", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("News", "Index", "Index")</li>
+                </ul>
+=======
             <a href="#" class="navbar-brand text-white">CRGaming</a>
             <button type="button" class="navbar-toggler bg-light mb-2 mr-2" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
@@ -24,6 +42,7 @@
                 <div class="navbar-nav ">
                     <a href="#" class="nav-item nav-link text-center btn btn-block text-white" style="background-color: #FF1D42">Acceso</a>
                 </div>
+>>>>>>> a44006aaacbfcf29656c4befaef4d5266f75a2ef
             </div>
         </div>
     </nav>
@@ -50,8 +69,13 @@
     <div class="container body-content" style="margin-top:1rem">
         @RenderBody()
         <hr />
+<<<<<<< HEAD
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Blog</p>
+=======
         <footer class="text-center border">
             <p>&copy; Copyright @DateTime.Now.Year - CRGaming</p>
+>>>>>>> a44006aaacbfcf29656c4befaef4d5266f75a2ef
         </footer>
     </div>
 

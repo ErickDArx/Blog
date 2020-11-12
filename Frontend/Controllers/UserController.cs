@@ -11,11 +11,8 @@ namespace Frontend.Controllers
         // GET: User
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult Register()
-        {
+            //Obtener publicaciones favoritas
+            //Obtener mis comentarios
             return View();
         }
     }

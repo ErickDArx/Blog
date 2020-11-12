@@ -129,13 +129,22 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+<<<<<<< HEAD
+    <Compile Include="Controllers\CommentsController.cs" />
+=======
     <Compile Include="Controllers\IndexController.cs" />
+>>>>>>> a44006aaacbfcf29656c4befaef4d5266f75a2ef
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CommentsViewModel.cs" />
+    <Compile Include="Models\FavoritesViewModel.cs" />
     <Compile Include="Models\NewsViewModel.cs" />
+    <Compile Include="Models\TagsViewModel.cs" />
+    <Compile Include="Models\UsersViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -266,6 +275,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\News\Create.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
+<<<<<<< HEAD
+    <Content Include="Views\Admin\Index.cshtml" />
+=======
     <Content Include="Views\Index\Index.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -277,10 +289,12 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+>>>>>>> a44006aaacbfcf29656c4befaef4d5266f75a2ef
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Admin\" />
+    <Folder Include="Views\Comments\" />
+    <Folder Include="Views\Register\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
