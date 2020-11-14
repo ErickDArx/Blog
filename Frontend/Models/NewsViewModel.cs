@@ -9,24 +9,29 @@ namespace Frontend.Models
 {
     public class NewsViewModel
     {
-        [Display(Name = "ID")]
         [Key]
-        public int NewsId { get; set; }
+        public int ID { get; set; }
 
         [Display(Name = "Titulo")]
-        public string NewsTitle { get; set; }
+        [Required(ErrorMessage = "Debe ingresar un titulo")]
+        public string Title { get; set; }
 
         [Display(Name = "Cuerpo")]
-        public string NewsBody { get; set; }
+        [Required(ErrorMessage = "Debe digitar el Cuerpo")]
+        public string Body { get; set; }
 
         [Display(Name = "Fecha de publicación")]
-        public DateTime NewsDate { get; set; }
+        [Required(ErrorMessage = "Debe digitar Fecha de publicación")]
+        public DateTime PublishDate { get; set; }
 
         [Display(Name = "Imagen del Banner")]
-        public string NewsBannerImage { get; set; }
+        //[Required(ErrorMessage = "Debe agregar un banner")]
+        public string BannerImage { get; set; }
 
-        public int UserId { get; set; }
-        public IEnumerable<User> users { get; set; }
+        public HttpPostedFileBase BannerImageFile { get; set; }
+
+        public int UserID { get; set; }
+        public IEnumerable<User> Users { get; set; }
         public User User { get; set; }
     }
 }
