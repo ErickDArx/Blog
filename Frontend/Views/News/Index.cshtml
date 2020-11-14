@@ -4,6 +4,7 @@
     ViewBag.Title = "Index";
 }
 
+<<<<<<< HEAD
 <h2>Noticias destacadas</h2>
 
 <table class="table">
@@ -107,7 +108,15 @@
 </table>
 
 <h2>Noticias recientes</h2>
+=======
+<h2>Index</h2>
 
+
+>>>>>>> b9d6ef639bf04afdc9729631b123fa8beb64c5e3
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 <table class="table">
     <tr>
         <th>
@@ -127,6 +136,7 @@
         </th>
         <th></th>
     </tr>
+<<<<<<< HEAD
     <tr>
         <td colspan="6">
             No hay eventos que mostrar.
@@ -142,24 +152,33 @@
 <h2>Todas las noticias</h2>
 
 <table class="table">
+=======
+
+@foreach (var item in Model) {
+>>>>>>> b9d6ef639bf04afdc9729631b123fa8beb64c5e3
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Body)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PublishDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BannerImage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserID)
-        </th>
-        <th></th>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Body)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PublishDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BannerImage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
     </tr>
+<<<<<<< HEAD
     <tr>
         <td colspan="6">
             No hay eventos que mostrar.
@@ -200,3 +219,8 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
+=======
+}
+
+</table>
+>>>>>>> b9d6ef639bf04afdc9729631b123fa8beb64c5e3
