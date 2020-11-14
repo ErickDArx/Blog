@@ -1,15 +1,16 @@
-﻿using System;
+﻿using Backend.DAL;
+using Backend.Entities;
+using Frontend.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-
 namespace Frontend.Controllers
 {
     public class CommentsController : Controller
     {
         // GET: Comments
-      private CommentsViewModel Convert(Comment comment)
+        /*private CommentsViewModel Convert(Comment comment)
         {
             CommentsViewModel commentsViewModel = new CommentsViewModel
             {
@@ -18,7 +19,7 @@ namespace Frontend.Controllers
                 CommentDate = comment.CommentDate,
                 UserID = comment.UserID,
                 User = comment.User,
-               
+
             };
 
             return commentsViewModel;
@@ -56,12 +57,12 @@ namespace Frontend.Controllers
 
             CommentsViewModel comment = new CommentsViewModel { };
 
-            using(UnitOfWork<User>unit = new UnitOfWork<User>(new BDContext()))
+            using (UnitOfWork<User> unit = new UnitOfWork<User>(new BDContext()))
             {
                 comment.User = unit.genericDAL.GetAll().ToList();
 
             }
-                return View(comment);
+            return View(comment);
         }
 
         [HttpPost]
@@ -99,7 +100,7 @@ namespace Frontend.Controllers
             }
             users.Insert(0, user);
             comments.Users = users;
-        
+
 
             return View(user);
         }
@@ -128,7 +129,7 @@ namespace Frontend.Controllers
             Comment commentEntity;
             using (UnitOfWork<Comment> unidad = new UnitOfWork<Comment>(new BDContext()))
             {
-               commentEntity = unidad.genericDAL.Get(id);
+                commentEntity = unidad.genericDAL.Get(id);
 
             }
 
@@ -154,7 +155,7 @@ namespace Frontend.Controllers
             Comment commentEntity;
             using (UnitOfWork<Comment> unit = new UnitOfWork<Comment>(new BDContext()))
             {
-               commentEntity = unit.genericDAL.Get(id);
+                commentEntity = unit.genericDAL.Get(id);
 
             }
 
@@ -188,8 +189,8 @@ namespace Frontend.Controllers
 
 
             return RedirectToAction("Index");
-        }
+        }*/
 
     }
 }
-        
+

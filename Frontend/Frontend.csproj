@@ -129,11 +129,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-<<<<<<< HEAD
+
     <Compile Include="Controllers\CommentsController.cs" />
-=======
+
     <Compile Include="Controllers\IndexController.cs" />
->>>>>>> a44006aaacbfcf29656c4befaef4d5266f75a2ef
+
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -275,9 +275,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\News\Create.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
-<<<<<<< HEAD
+
     <Content Include="Views\Admin\Index.cshtml" />
-=======
+
     <Content Include="Views\Index\Index.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -289,7 +289,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
->>>>>>> a44006aaacbfcf29656c4befaef4d5266f75a2ef
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
