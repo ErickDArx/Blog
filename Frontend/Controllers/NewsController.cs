@@ -6,6 +6,7 @@ using Frontend.Models;
 using System.Web.Mvc;
 using Backend.Entities;
 using Backend.DAL;
+using System.IO;
 
 namespace Frontend.Controllers
 {
@@ -13,38 +14,32 @@ namespace Frontend.Controllers
     {
         private NewsViewModel Convert(News news)
         {
-            NewsViewModel newsViewModel = new NewsViewModel
+            return new NewsViewModel
             {
-                NewsId = news.ID,
-                NewsTitle = news.Title,
-                NewsBody = news.Body,
-                NewsBannerImage = news.BannerImage,
-                NewsDate = news.PublishDate,
-                UserId = (int)news.UserID
+                ID = news.ID,
+                Title = news.Title,
+                Body = news.Body,
+                BannerImage = news.BannerImage,
+                PublishDate = news.PublishDate,
+                UserID = (int)news.UserID
             };
-
-            return newsViewModel;
         }
 
         private News Convert(NewsViewModel newsViewModel)
         {
-            News news = new News
+            return new News
             {
-                ID = newsViewModel.NewsId,
-                Title = newsViewModel.NewsTitle,
-                Body = newsViewModel.NewsBody,
-                BannerImage = newsViewModel.NewsBannerImage,
-                PublishDate = newsViewModel.NewsDate,
-                UserID = newsViewModel.UserId
+                Title = newsViewModel.Title,
+                Body = newsViewModel.Body,
+                BannerImage = newsViewModel.BannerImage,
+                PublishDate = newsViewModel.PublishDate,
+                UserID = newsViewModel.UserID
             };
-
-            return news;
         }
 
         // GET: News
         public ActionResult Index()
         {
-
             List<News> news;
             using (UnitOfWork<News> unit = new UnitOfWork<News>(new BDContext()))
             {
@@ -56,21 +51,44 @@ namespace Frontend.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            User user;
+            using (UnitOfWork<User> unit = new UnitOfWork<User>(new BDContext()))
+            {
+                user = unit.genericDAL.Get(420);
+            }
+
+            return View(user);
         }
 
         [HttpPost]
-        public ActionResult Create(NewsViewModel newsViewModel)
+        public ActionResult Create(NewsViewModel news)
         {
-            News news = this.Convert(newsViewModel);
+            string fileName = Path.GetFileName(news.BannerImageFile.FileName);
+            news.BannerImage = "~/Media/Images/" + fileName;
+            //news.NewsBannerImage = "~/Media/Images/{BlogUrl}/" + fileName;
+            fileName = Path.Combine(Server.MapPath("~/Media/Images/"), fileName);
+            news.BannerImageFile.SaveAs(fileName);
 
+            News blogEntry = this.Convert(news);
             using (UnitOfWork<News> unit = new UnitOfWork<News>(new BDContext()))
             {
-                unit.genericDAL.Add(news);
+                unit.genericDAL.Add(blogEntry);
                 unit.Complete();
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "News");
+        }
+
+        [HttpPost]
+        public ActionResult Delete(News news)
+        {
+            using (UnitOfWork<News> unit = new UnitOfWork<News>(new BDContext()))
+            {
+                unit.genericDAL.Remove(news);
+                unit.Complete();
+            }
+
+            return RedirectToAction("Index", "News");
         }
 
         public ActionResult Edit(int id)
