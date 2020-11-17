@@ -1,5 +1,4 @@
 ﻿body {
-
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -15,9 +14,10 @@
     white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+table tbody{
+    color: white;
+}
+
+btn btn-default{
+    background-color: white;
 }
