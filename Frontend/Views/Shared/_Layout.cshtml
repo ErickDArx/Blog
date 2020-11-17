@@ -6,48 +6,67 @@
     <title>@ViewBag.Title - CRGaming</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
 <body style="background: #1A1A2E" class="text-white">
 
-    <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color: #0F3460">
+    <nav class="navbar navbar-expand-sm navbar-light fixed-top" style="background-color: #0F3460">
         <div class="container">
-            <div class="navbar-collapse collapse">
-                <a href="#" class="navbar-brand text-white">CRGaming</a>
-                <button type="button" class="navbar-toggler bg-light mb-2 mr-2" data-toggle="collapse" data-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+            <a class="navbar-brand text-white" href="#">CRGaming</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"  style="background-color: #FF1D42">
+                <i class="text-white fa fa-gamepad"></i>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="text-white nav-link text-center btn-block btn-primary btn" href="#">Acceder <span class="sr-only">(current)</span></a>
+                    </li>
 
-                <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
-                    <div class="navbar-nav ">
-                        <a href="" class="nav-item nav-link text-center btn btn-block text-white" style="background-color: #FF1D42">Acceso</a>
-                    </div>
-                </div>
+                </ul>
             </div>
         </div>
     </nav>
 
     <div class="card border-0" style="margin-top: 4rem;
         background-color: #16213E">
+<<<<<<< HEAD
         <div class="card-body text-center text-white h1">
             Noticias
+<<<<<<< HEAD
         </div>
+=======
+        </div>
+=======
+        <div class="container card-body text-center text-white h1">
+            Noticias / Actualizaciones / Conferencias y mas
+        </div>
+
+>>>>>>> aadd54f04d2c602bf164e3d82c54aa76b8ff1080
+>>>>>>> 67f5251ebe9f4f9695b20693a61c3ab743b03b8e
         <div class="container card-footer bg-transparent border-primary ">
 
             <ul class="nav justify-content-center">
-                <li class="nav-item"> <a href="#" class="nav-link active  text-white">PC</a> </li>
-                <li class="nav-item"> <a href="#" class="nav-link active  text-white">PlayStation</a> </li>
-                <li class="nav-item"> <a href="#" class="nav-link active  text-white">Xbox</a> </li>
-                <li class="nav-item"> <a href="#" class="nav-link active  text-white">Nintendo</a> </li>
-                <li class="nav-item"> <a href="#" class="nav-link active  text-white">Android e IOS</a> </li>
+                <li class="nav-item"> <a href="#" class="mr-1 nav-link btn btn-outline-primary text-white">PC</a> </li>
+                <li class="nav-item"> <a href="#" class="mr-1 nav-link  btn btn-outline-primary text-white">PlayStation <i class="fa fa-playstation"></i></a> </li>
+                <li class="nav-item"> <a href="#" class="mr-1 nav-link  btn btn-outline-primary text-white">Xbox</a> </li>
+                <li class="nav-item"> <a href="#" class="mr-1 nav-link  btn btn-outline-primary text-white">Nintendo</a> </li>
+                <li class="nav-item"> <a href="#" class="mr-1 nav-link  btn btn-outline-primary text-white">Android e IOS</a> </li>
             </ul>
 
         </div>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> aadd54f04d2c602bf164e3d82c54aa76b8ff1080
+>>>>>>> 67f5251ebe9f4f9695b20693a61c3ab743b03b8e
     </div>
 
-    <div class="container body-content" style="margin-top:1rem">
+    <div class="" style="margin-top:1rem">
         @RenderBody()
         <hr />
-        <footer class="text-center border">
+        <footer class="text-center ">
             <p>&copy; Copyright @DateTime.Now.Year - CRGaming</p>
         </footer>
     </div>
