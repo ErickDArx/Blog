@@ -4,190 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<<<<<<< HEAD
 <h2>Noticias destacadas</h2>
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Body)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PublishDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BannerImage)
-        </th>
-        <th>
-            Autor
-        </th>
-        <th>Opciones</th>
-    </tr>
-
-    @if (Model.Count() > 0)
-    {
-
-        foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Body)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PublishDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BannerImage)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserID)
-                </td>
-                <td>
-                    @Html.ActionLink("Editar", "Edit", new { id = item.ID })
-
-                    @using (Html.BeginForm("Delete", "News", new { id = item.ID }))
-                    {
-                        @Html.AntiForgeryToken()
-                        @Html.HiddenFor(modelItem => item.ID)
-                        <div class="form-actions btn-danger">
-                            <input type="submit" value="Eliminar" class="btn btn-default" />
-                        </div>
-                    }
-                </td>
-            </tr>
-        }
-    }
-    else
-    {
-        <tr>
-            <td colspan="6">
-                No hay noticias que mostrar.
-            </td>
-        </tr>
-    }
-
-</table>
-
-<h2>Suscribirse</h2>
-
-@Html.ActionLink("Me interesa", "Index", "Index")
-
-<h2>Proximos eventos</h2>
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Body)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PublishDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BannerImage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserID)
-        </th>
-        <th></th>
-    </tr>
-    <tr>
-        <td colspan="6">
-            No hay eventos que mostrar.
-        </td>
-    </tr>
-
-</table>
-
-<h2>Noticias recientes</h2>
-=======
-<h2>Index</h2>
-
-
->>>>>>> b9d6ef639bf04afdc9729631b123fa8beb64c5e3
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Body)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PublishDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BannerImage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserID)
-        </th>
-        <th></th>
-    </tr>
-<<<<<<< HEAD
-    <tr>
-        <td colspan="6">
-            No hay eventos que mostrar.
-        </td>
-    </tr>
-
-</table>
-
-<h2>Suscribirse</h2>
-
-@Html.ActionLink("Inscribirme", "Index", "Index")
-
-<h2>Todas las noticias</h2>
-
-<table class="table">
-=======
-
-@foreach (var item in Model) {
->>>>>>> b9d6ef639bf04afdc9729631b123fa8beb64c5e3
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Body)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PublishDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BannerImage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserID)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-<<<<<<< HEAD
-    <tr>
-        <td colspan="6">
-            No hay eventos que mostrar.
-        </td>
-    </tr>
-
-</table>
-
-<h2>Ultimas Noticias</h2>
 
 <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
 
@@ -199,7 +16,7 @@
                 i++;
                 var active = i == 1 ? "active" : "";
                 <div class="carousel-item @active">
-                    <img src="@Html.DisplayFor(modelItem => item.BannerImage)" class="d-block w-100" alt="...">
+                    <img src="@Url.Content(item.BannerImage)" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h2 class="bg-dark mt-3 mb-3">@Html.DisplayFor(modelItem => item.Title)</h2>
                         <button type="button" class="btn btn-block btn-primary">Ver noticia</button>
@@ -219,8 +36,24 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
-=======
-}
 
-</table>
->>>>>>> b9d6ef639bf04afdc9729631b123fa8beb64c5e3
+<br />
+
+<h2>PC Gaming</h2>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+
+        <div class="blog-thumbnail col-md-4" style="max-width: 250px;">
+            <img src="@Url.Content(item.BannerImage)" class="img-thumbnail" />
+            <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+            <p>
+                Te contamos cómo solucionar los problemas de servidores de Black Ops Cold War y cómo saber cuál es el estado de conexión en CoD Black Ops Cold War de Activision y Treyarch.
+            </p>
+            <span>@Html.DisplayFor(modelItem => item.UserID)</span>
+            <span>PC, Actualizaciones, Bugs</span>
+            <span>@Html.DisplayFor(modelItem => item.PublishDate)</span>
+        </div>
+    }
+</div>

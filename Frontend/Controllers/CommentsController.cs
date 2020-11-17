@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Backend.DAL;
+using Backend.Entities;
+using Frontend.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Frontend.Controllers
@@ -9,22 +11,21 @@ namespace Frontend.Controllers
     public class CommentsController : Controller
     {
         // GET: Comments
-      private CommentsViewModel Convert(Comment comment)
+        private CommentViewModel Convert(Comment comment)
         {
-            CommentsViewModel commentsViewModel = new CommentsViewModel
+            CommentViewModel commentsViewModel = new CommentViewModel
             {
                 ID = comment.ID,
                 Content = comment.Content,
                 CommentDate = comment.CommentDate,
-                UserID = comment.UserID,
-                User = comment.User,
-               
+                UserID = (int)comment.UserID,
+
             };
 
             return commentsViewModel;
         }
 
-        private Comment Convert(CommentsViewModel commentsViewModel)
+        private Comment Convert(CommentViewModel commentsViewModel)
         {
             Comment comment = new Comment
             {
@@ -32,7 +33,6 @@ namespace Frontend.Controllers
                 Content = commentsViewModel.Content,
                 CommentDate = commentsViewModel.CommentDate,
                 UserID = commentsViewModel.UserID,
-                User = commentsViewModel.User,
             };
 
             return comment;
@@ -54,14 +54,14 @@ namespace Frontend.Controllers
         public ActionResult Create()
         {
 
-            CommentsViewModel comment = new CommentsViewModel { };
+            CommentViewModel comment = new CommentViewModel { };
 
-            using(UnitOfWork<User>unit = new UnitOfWork<User>(new BDContext()))
+            using (UnitOfWork<User> unit = new UnitOfWork<User>(new BDContext()))
             {
                 comment.User = unit.genericDAL.GetAll().ToList();
 
             }
-                return View(comment);
+            return View(comment);
         }
 
         [HttpPost]
@@ -87,7 +87,7 @@ namespace Frontend.Controllers
 
             }
 
-            CommentsViewModel comments = this.Convert(commentEntity);
+            CommentViewModel comments = this.Convert(commentEntity);
 
             User user;
             List<User> users;
@@ -98,98 +98,74 @@ namespace Frontend.Controllers
                 user = unit.genericDAL.Get(comments.UserID);
             }
             users.Insert(0, user);
-            comments.Users = users;
-        
+            //comments.Users = users;
 
             return View(user);
         }
 
-
-
-
         [HttpPost]
         public ActionResult Edit(Comment comment)
         {
-
             using (UnitOfWork<Comment> unit = new UnitOfWork<Comment>(new BDContext()))
             {
                 unit.genericDAL.Update(comment);
                 unit.Complete();
             }
 
-
             return RedirectToAction("Index");
         }
-
-
 
         public ActionResult Details(int id)
         {
             Comment commentEntity;
             using (UnitOfWork<Comment> unidad = new UnitOfWork<Comment>(new BDContext()))
             {
-               commentEntity = unidad.genericDAL.Get(id);
+                commentEntity = unidad.genericDAL.Get(id);
 
             }
 
-            CommentsViewModel comment = this.Convert(commentEntity);
-
-
-
+            CommentViewModel comment = this.Convert(commentEntity);
 
             using (UnitOfWork<User> unit = new UnitOfWork<User>(new BDContext()))
             {
 
-                comment.User = unit.genericDAL.Get(comment.UserID);
-            }
-            ;
-
+                //comment.User = unit.genericDAL.Get(comment.UserID);
+            };
 
             return View(comment);
         }
-
 
         public ActionResult Delete(int id)
         {
             Comment commentEntity;
             using (UnitOfWork<Comment> unit = new UnitOfWork<Comment>(new BDContext()))
             {
-               commentEntity = unit.genericDAL.Get(id);
+                commentEntity = unit.genericDAL.Get(id);
 
             }
 
-            CommentsViewModel comment = this.Convert(commentEntity);
-
-
-
+            CommentViewModel comment = this.Convert(commentEntity);
 
             using (UnitOfWork<User> unit = new UnitOfWork<User>(new BDContext()))
             {
 
-                comment.User = unit.genericDAL.Get(comment.UserID);
-            }
-            ;
-
+                //comment.User = unit.genericDAL.Get(comment.UserID);
+            };
 
             return View(comment);
         }
 
-
-
         [HttpPost]
         public ActionResult Delete(Comment comment)
         {
-
             using (UnitOfWork<Comment> unit = new UnitOfWork<Comment>(new BDContext()))
             {
                 unit.genericDAL.Remove(comment);
                 unit.Complete();
             }
 
-
             return RedirectToAction("Index");
         }
-
     }
 }
-        
+

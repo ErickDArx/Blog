@@ -5,26 +5,27 @@ using System.Web;
 using System.Web.Mvc;
 using Backend.Entities;
 using Backend.DAL;
+using Frontend.Models;
 
 namespace Frontend.Controllers
 {
-    public class AdminController : Controller
+    public class ProfileController : Controller
     {
         public ActionResult Index()
         {
-            List<Favorite> favorites;
+            User user = new User { };
+
             using (UnitOfWork<Favorite> unit = new UnitOfWork<Favorite>(new BDContext()))
             {
-                favorites = unit.genericDAL.GetAll().ToList();
+                user.Favorites = unit.genericDAL.GetAll().ToList();
             }
 
-            List<Comment> comments;
             using (UnitOfWork<Comment> unit = new UnitOfWork<Comment>(new BDContext()))
             {
-                comments = unit.genericDAL.GetAll().ToList();
+                user.Comments = unit.genericDAL.GetAll().ToList();
             }
 
-            return View();
+            return View(user);
         }
     }
 }

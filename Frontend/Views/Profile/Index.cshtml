@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Frontend.Models.UserViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Administraci&oacute;n</h1>
+
+<h2>Panel de control</h2>
+
+<p>@Html.ActionLink("Crear publicación", "Create", "News")</p>
+
+<p>@Html.ActionLink("Listar publicaciónes", "Index", "News")</p>
+
+<h2>General</h2>
+
+<h3>Mis publicaci&oacute;nes favoritas</h3>
+
+@foreach (var item in Model)
+{
+    
+}
+
+<h3>Mis comentarios</h3>
