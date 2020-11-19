@@ -61,15 +61,15 @@ namespace Frontend.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(NewsViewModel news)
+        public ActionResult Create(NewsViewModel newsViewModel)
         {
-            string fileName = Path.GetFileName(news.BannerImageFile.FileName);
-            news.BannerImage = "~/Media/Images/" + fileName;
+            string fileName = Path.GetFileName(newsViewModel.BannerImageFile.FileName);
+            newsViewModel.BannerImage = "~/Media/Images/" + fileName;
             //news.NewsBannerImage = "~/Media/Images/{BlogUrl}/" + fileName;
             fileName = Path.Combine(Server.MapPath("~/Media/Images/"), fileName);
-            news.BannerImageFile.SaveAs(fileName);
+            newsViewModel.BannerImageFile.SaveAs(fileName);
 
-            News blogEntry = this.Convert(news);
+            News blogEntry = this.Convert(newsViewModel);
             using (UnitOfWork<News> unit = new UnitOfWork<News>(new BDContext()))
             {
                 unit.genericDAL.Add(blogEntry);

@@ -4,9 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-    <div class="container">
+<<<<<<< HEAD
+<h2>Noticias destacadas</h2>
 
-        <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
+<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
 
             <div class="carousel-inner">
                 <div class="container">
@@ -46,7 +47,7 @@
             </div>
         </div>
 
-        <h2 class="mt-4 mb-2">Noticias destacadas</h2>
+    <h2 class="mt-4 mb-2">Noticias destacadas</h2>
 
         <div class="row container align-content-center">
             @if (Model.Count() > 0)
@@ -81,23 +82,30 @@
             }
         </div>
 
+</div>
 
-        <h2>PC Gaming</h2>
-        <div class="row">
-            @foreach (var iterador in Model)
-            {
-                <div class="blog-thumbnail col-md-4" style="max-width: 250px;">
-                    <img src="@Url.Content(iterador.BannerImage)" class="img-thumbnail" />
-                    <h3>@Html.DisplayFor(modelItem => iterador.Title)</h3>
-                    <p>
-                        Te contamos cómo solucionar los problemas de servidores de Black Ops Cold War y cómo saber cuál es el estado de conexión en CoD Black Ops Cold War de Activision y Treyarch.
-                    </p>
-                    <span>@Html.DisplayFor(modelItem => iterador.UserID)</span>
-                    <span>PC, Actualizaciones, Bugs</span>
-                    <span>@Html.DisplayFor(modelItem => iterador.PublishDate)</span>
-                </div>
-            }
+<<<<<<< HEAD
+<br />
+
+<h2>PC Gaming</h2>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+
+        <div class="blog-thumbnail col-md-4" style="max-width: 250px;">
+            <img src="@Url.Content(item.BannerImage)" class="img-thumbnail" />
+            <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+            <p>
+                Te contamos cómo solucionar los problemas de servidores de Black Ops Cold War y cómo saber cuál es el estado de conexión en CoD Black Ops Cold War de Activision y Treyarch.
+            </p>
+            <span>@Html.DisplayFor(modelItem => item.UserID)</span>
+            <span>PC, Actualizaciones, Bugs</span>
+            <span>@Html.DisplayFor(modelItem => item.PublishDate)</span>
         </div>
+    }
+</div>
+=======
 
         <div class="jumbotron jumbotron-fluid" style="background-color: #FF1D42">
             <div class="row ">
@@ -133,5 +141,4 @@
 
     </div>
 
-
-
+>>>>>>> aadd54f04d2c602bf164e3d82c54aa76b8ff1080

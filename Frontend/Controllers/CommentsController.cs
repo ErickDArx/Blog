@@ -13,8 +13,12 @@ namespace Frontend.Controllers
 <<<<<<< HEAD
         private CommentViewModel Convert(Comment comment)
 =======
+<<<<<<< HEAD
+        private CommentViewModel Convert(Comment comment)
+=======
         /*private CommentsViewModel Convert(Comment comment)
 >>>>>>> aadd54f04d2c602bf164e3d82c54aa76b8ff1080
+>>>>>>> 67f5251ebe9f4f9695b20693a61c3ab743b03b8e
         {
             CommentViewModel commentsViewModel = new CommentViewModel
             {
@@ -24,9 +28,13 @@ namespace Frontend.Controllers
 <<<<<<< HEAD
                 UserID = (int)comment.UserID,
 =======
+<<<<<<< HEAD
+                UserID = (int)comment.UserID,
+=======
                 UserID = comment.UserID,
                 User = comment.User,
 >>>>>>> aadd54f04d2c602bf164e3d82c54aa76b8ff1080
+>>>>>>> 67f5251ebe9f4f9695b20693a61c3ab743b03b8e
 
             };
 
@@ -109,9 +117,13 @@ namespace Frontend.Controllers
 <<<<<<< HEAD
             //comments.Users = users;
 =======
+<<<<<<< HEAD
+            //comments.Users = users;
+=======
             comments.Users = users;
 
 >>>>>>> aadd54f04d2c602bf164e3d82c54aa76b8ff1080
+>>>>>>> 67f5251ebe9f4f9695b20693a61c3ab743b03b8e
 
             return View(user);
         }
@@ -180,10 +192,13 @@ namespace Frontend.Controllers
             return RedirectToAction("Index");
 <<<<<<< HEAD
         }
+<<<<<<< HEAD
+=======
 =======
         }*/
 
 >>>>>>> aadd54f04d2c602bf164e3d82c54aa76b8ff1080
+>>>>>>> 67f5251ebe9f4f9695b20693a61c3ab743b03b8e
     }
 }
 
