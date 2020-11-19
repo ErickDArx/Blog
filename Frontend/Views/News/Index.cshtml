@@ -4,87 +4,96 @@
     ViewBag.Title = "Index";
 }
 
-<<<<<<< HEAD
-<h2>Noticias destacadas</h2>
+<div class="container">
 
-<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
+    <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
 
-            <div class="carousel-inner">
-                <div class="container">
-                    <h2>Ultimas Actualizaciones</h2>
+        <div class="carousel-inner">
+            <div class="container">
+                <h2>Ultimas Actualizaciones</h2>
 
-                    <div id="carouselExampleInterval" class="container carousel slide" data-ride="carousel">
+                <div id="carouselExampleInterval" class="container carousel slide" data-ride="carousel">
 
-                        <div class="carousel-inner">
-                            @{int i = 0;}
-                            @foreach (var iterador in Model)
+                    <div class="carousel-inner">
+                        @{int i = 0;}
+                        @foreach (var iterador in Model)
+                        {
                             {
-                                {
-                                    i++;
-                                    var active = i == 1 ? "active" : "";
-                                    <div class="carousel-item @active">
-                                        <img src="@Html.DisplayFor(modelItem => iterador.BannerImage)" class="d-block w-100" alt="...">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <h2 class="bg-dark mt-3 mb-3">@Html.DisplayFor(modelItem => iterador.Title)</h2>
-                                            <button type="button" class="btn btn-block btn-primary">Ver noticia</button>
-                                        </div>
+                                i++;
+                                var active = i == 1 ? "active" : "";
+                                <div class="carousel-item @active">
+                                    <img src="@Html.DisplayFor(modelItem => iterador.BannerImage)" class="d-block w-100" alt="...">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h2 class="bg-dark mt-3 mb-3">@Html.DisplayFor(modelItem => iterador.Title)</h2>
+                                        <button type="button" class="btn btn-block btn-primary">Ver noticia</button>
                                     </div>
+                                </div>
 
-                                }
                             }
-                        </div>
+                        }
 
-                        <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
+
                     </div>
                 </div>
             </div>
         </div>
-
-    <h2 class="mt-4 mb-2">Noticias destacadas</h2>
-
-        <div class="row container align-content-center">
-            @if (Model.Count() > 0)
-            {
-
-                foreach (var item in Model)
-                {
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 mt-2 mb-2">
-
-
-                        <img src="@Html.DisplayFor(modelItem => item.BannerImage)"
-                             class="card-img border-0" alt="..." style="width:100%">
-                        <div class="card-img-overlay">
-                            <p class="btn rounded-pill bg-dark text-white">@Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.PublishDate))</p>
-                        </div>
-                        <div class="card-body bg-primary rounded-bottom shadow blockquote">
-                            <h5 class="card-title"> @Html.DisplayFor(modelItem => item.Title)</h5>
-                            <p class="card-text col-12 text-truncate">@Html.DisplayFor(modelItem => item.Body)</p>
-                            <p class="card-text"><small class="text-muted"></small></p>
-                        </div>
-
-
-
-
-                    </div>
-                }
-            }
-            else
-            {
-
-                <p>No hay noticias que mostrar.</p>
-            }
-        </div>
-
+    </div>
 </div>
 
-<<<<<<< HEAD
+<h2 class="mt-4 mb-2">Noticias destacadas</h2>
+
+
+<div class="row container align-content-center">
+    @if (Model.Count() > 0)
+    {
+
+        foreach (var item in Model)
+        {
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 mt-2 mb-2">
+
+
+                <img src="@Html.DisplayFor(modelItem => item.BannerImage)"
+                     class="card-img border-0" alt="..." style="width:100%">
+                <div class="card-img-overlay">
+                    <p class="btn rounded-pill bg-dark text-white">@Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.PublishDate))</p>
+                </div>
+                <div class="card-body bg-primary rounded-bottom shadow blockquote">
+                    <h5 class="card-title"> @Html.DisplayFor(modelItem => item.Title)</h5>
+                    <p class="card-text col-12 text-truncate">@Html.DisplayFor(modelItem => item.Body)</p>
+                    <p class="card-text"><small class="text-muted"></small></p>
+                </div>
+
+
+
+
+            </div>
+        }
+    }
+    else
+    {
+
+        <p>No hay noticias que mostrar.</p>
+    }
+</div>
+
+
+<h2>PC Gaming</h2>
+<div class="row">
+    @foreach (var iterado in Model)
+    {
+        <div class="blog-thumbnail col-md-4" style="max-width: 250px;">
+            <img src="@Url.Content(iterado.BannerImage)" class="img-thumbnail" />
+            <h3>@Html.DisplayFor(modelItem => iterado.Title)</h3>
+            <p>
+                Te contamos cómo solucionar los problemas de servidores de Black Ops Cold War y cómo saber cuál es el estado de conexión en CoD Black Ops Cold War de Activision y Treyarch.
+            </p>
+            <span>@Html.DisplayFor(modelItem => iterado.UserID)</span>
+            <span>PC, Actualizaciones, Bugs</span>
+            <span>@Html.DisplayFor(modelItem => iterado.PublishDate)</span>
+        </div>
+    }
+</div>
+
 <br />
 
 <h2>PC Gaming</h2>
@@ -105,40 +114,51 @@
         </div>
     }
 </div>
-=======
 
-        <div class="jumbotron jumbotron-fluid" style="background-color: #FF1D42">
-            <div class="row ">
-                <div class="col-md-6 container">
-                    <h1 class="display-4">¿Todavia no te has suscrito?</h1>
-                    <p class="lead">No esperes mas, con tu acceso podras comentar y guardar tus publicaciones favoritas</p>
-                    <a class="btn btn-dark btn-block" href="@Url.Action("Index", "Index")" role="button">Crear mi cuenta</a>
-                </div>
-                <div class="col-md-4">
-                    <img src="~/Imagenes/Grupo 40.png" style="width:50%" class="figure-img align-content-center" alt="Alternate Text" />
-                </div>
-            </div>
+<div class="jumbotron jumbotron-fluid" style="background-color: #FF1D42">
+    <div class="row ">
+        <div class="col-md-6 container">
+            <h1 class="display-4">¿Todavia no te has suscrito?</h1>
+            <p class="lead">No esperes mas, con tu acceso podras comentar y guardar tus publicaciones favoritas</p>
+            <a class="btn btn-dark btn-block" href="@Url.Action("Index", "Index")" role="button">Crear mi cuenta</a>
+
         </div>
-
-
-        <h2 class="container">Proximos eventos</h2>
-
-        <div class="container card  bg-transparent" style="">
-            <div class="row no-gutters">
-                <div class="col-md-4">
-                    <img src="https://pbs.twimg.com/media/EX-Tgm9XgAAjV6S.png" class="text-center card-img" alt="..." style="width:80%">
-                </div>
-                <div class="col-md-8">
-                    <div class="border-left card-body">
-                        <h3 class="card-title">Conferencia E3 2021</h3>
-                        <p class="card-text">La Electronic Entertainment Expo, más conocida por su abreviatura E3, es la convención de videojuegos más importante de la industria, en la que diversas compañías de videojuegos hablan de sus próximos lanzamientos, y algunas veces de su software y hardware.</p>
-                        <p class="text-white btn rounded-pill bg-dark">Fecha del evento: 27/06/2021</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
 
->>>>>>> aadd54f04d2c602bf164e3d82c54aa76b8ff1080
+    <div class="jumbotron jumbotron-fluid" style="background-color: #FF1D42">
+        <div class="row ">
+            <div class="col-md-6 container">
+                <h1 class="display-4">¿Todavia no te has suscrito?</h1>
+                <p class="lead">No esperes mas, con tu acceso podras comentar y guardar tus publicaciones favoritas</p>
+                <a class="btn btn-dark btn-block" href="@Url.Action("Index", "Index")" role="button">Crear mi cuenta</a>
+            </div>
+            <div class="col-md-4">
+                <img src="~/Imagenes/Grupo 40.png" style="width:50%" class="figure-img align-content-center" alt="Alternate Text" />
+            </div>
+        </div>
+    </div>
+
+
+    <h2 class="container">Proximos eventos</h2>
+
+    <div class="container card  bg-transparent" style="">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="https://pbs.twimg.com/media/EX-Tgm9XgAAjV6S.png" class="text-center card-img" alt="..." style="width:80%">
+            </div>
+            <div class="col-md-8">
+                <div class="border-left card-body">
+                    <h3 class="card-title">Conferencia E3 2021</h3>
+                    <p class="card-text">La Electronic Entertainment Expo, más conocida por su abreviatura E3, es la convención de videojuegos más importante de la industria, en la que diversas compañías de videojuegos hablan de sus próximos lanzamientos, y algunas veces de su software y hardware.</p>
+                    <p class="text-white btn rounded-pill bg-dark">Fecha del evento: 27/06/2021</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
