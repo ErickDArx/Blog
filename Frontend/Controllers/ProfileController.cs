@@ -13,19 +13,19 @@ namespace Frontend.Controllers
     {
         public ActionResult Index()
         {
-            User user = new User { };
+            UserViewModel users = new UserViewModel { };
 
             using (UnitOfWork<Favorite> unit = new UnitOfWork<Favorite>(new BDContext()))
             {
-                user.Favorites = unit.genericDAL.GetAll().ToList();
+                users.Favorites = unit.genericDAL.GetAll().ToList();
             }
 
             using (UnitOfWork<Comment> unit = new UnitOfWork<Comment>(new BDContext()))
             {
-                user.Comments = unit.genericDAL.GetAll().ToList();
+                users.Comments = unit.genericDAL.GetAll().ToList();
             }
 
-            return View(user);
+            return View(users);
         }
     }
 }

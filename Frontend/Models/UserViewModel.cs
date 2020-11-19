@@ -17,6 +17,7 @@ namespace Frontend.Models
         public string Email { get; set; }
         public string UserPassword { get; set; }
         public string ProfileImage { get; set; }
+        public HttpPostedFileBase ProfileImageFile { get; set; }
         public int UserRol { get; set; }
 
         public int CommentID { get; set; }

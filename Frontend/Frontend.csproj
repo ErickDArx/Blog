@@ -129,10 +129,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
-    <Compile Include="Controllers\CommentsController.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\CommentsController.cs" />
-    <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Global.asax.cs">
@@ -275,8 +271,6 @@
     <Content Include="Views\News\Create.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Index\Index.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.js.flow" />
@@ -288,12 +282,14 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\News\Edit.cshtml" />
+    <Content Include="Views\Register\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Media\Images\" />
+    <Folder Include="Media\Users\" />
+    <Folder Include="Views\Admin\" />
     <Folder Include="Views\Comments\" />
-    <Folder Include="Views\Register\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
