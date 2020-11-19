@@ -41,10 +41,10 @@ namespace Frontend.Controllers
 
         public ActionResult Create(UserViewModel userViewModel)
         {
-            string fileName = Path.GetFileName(userViewModel.ProfileImageFile.FileName);
+            /*string fileName = Path.GetFileName(userViewModel.ProfileImageFile.FileName);
             userViewModel.ProfileImage = "~/Media/Users/" + fileName;
             fileName = Path.Combine(Server.MapPath("~/Media/Images/"), fileName);
-            userViewModel.ProfileImageFile.SaveAs(fileName);
+            userViewModel.ProfileImageFile.SaveAs(fileName);*/
 
             User user = this.Convert(userViewModel);
             using (UnitOfWork<User> unit = new UnitOfWork<User>(new BDContext()))
