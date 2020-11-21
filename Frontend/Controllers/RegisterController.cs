@@ -39,6 +39,11 @@ namespace Frontend.Controllers
             return View();
         }
 
+        public ActionResult acceso()
+        {
+            return View();
+        }
+
         public ActionResult Create(UserViewModel userViewModel)
         {
             /*string fileName = Path.GetFileName(userViewModel.ProfileImageFile.FileName);
