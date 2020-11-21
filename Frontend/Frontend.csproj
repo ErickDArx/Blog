@@ -128,6 +128,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
@@ -288,8 +290,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Media\Images\" />
     <Folder Include="Media\Users\" />
-    <Folder Include="Views\Admin\" />
-    <Folder Include="Views\Comments\" />
+    <Folder Include="Views\Comment\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

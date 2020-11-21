@@ -1,0 +1,68 @@
+﻿using Backend.Entities;
+using Backend.DAL;
+using Frontend.Models;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Security;
+using System.Linq.Expressions;
+using System;
+using System.Linq;
+
+namespace Frontend.Controllers
+{
+    public class LoginController : Controller
+    {
+        // GET: Login
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(UserViewModel userViewModel)
+        {
+            User user;
+            using (UnitOfWork<User> unit = new UnitOfWork<User>(new BDContext()))
+            {
+                Expression<Func<User, bool>> query =
+                    (u => u.Username.Equals(userViewModel.Username) && u.UserPassword.Equals(userViewModel.UserPassword));
+                user = unit.genericDAL.Find(query).ToList().FirstOrDefault();
+            }
+
+            if (user == null)
+            {
+                userViewModel.LoginErrorMessage = "Credenciales incorrectos";
+                return View("Login", userViewModel);
+            }
+            else
+            {
+                Session["userId"] = user.ID;
+                Session["UserName"] = user.Username;
+
+                var authTicket = new FormsAuthenticationTicket(user.Username, true, 100000);
+                var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(authTicket));
+
+                Response.Cookies.Add(cookie);
+                var name = User.Identity.Name;
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        public ActionResult Logout()
+        {
+            int userId = (int)Session["userId"];
+            Session.Clear();
+            Session.Abandon();
+
+            HttpCookie cookie1 = new HttpCookie(FormsAuthentication.FormsCookieName, "");
+            cookie1.Expires = DateTime.Now.AddYears(-1);
+            Response.Cookies.Add(cookie1);
+
+            HttpCookie cookie2 = new HttpCookie("ASP.NET_SessionId", "");
+            cookie2.Expires = DateTime.Now.AddYears(-1);
+            Response.Cookies.Add(cookie2);
+
+            return RedirectToAction("Index", "Login");
+        }
+    }
+}
