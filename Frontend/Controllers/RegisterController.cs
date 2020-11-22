@@ -1,6 +1,7 @@
 ﻿using Backend.DAL;
 using Backend.Entities;
 using Frontend.Models;
+using System;
 using System.IO;
 using System.Web.Mvc;
 
@@ -17,7 +18,8 @@ namespace Frontend.Controllers
                 LastName = user.LastName,
                 Email = user.Email,
                 UserPassword = user.UserPassword,
-                ProfileImage = user.ProfileImage
+                ProfileImage = user.ProfileImage,
+                UserRol=user.UserRol=2,
             };
         }
 
@@ -30,22 +32,22 @@ namespace Frontend.Controllers
                 LastName = userViewModel.LastName,
                 Email = userViewModel.Email,
                 UserPassword = userViewModel.UserPassword,
-                ProfileImage = userViewModel.ProfileImage
+                ProfileImage = userViewModel.ProfileImage,
+                UserRol = (int)userViewModel.UserRol,
             };
         }
 
-        public ActionResult Index()
+        public ActionResult Create()
         {
             return View();
         }
 
-        public ActionResult acceso()
-        {
-            return View();
-        }
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(UserViewModel userViewModel)
         {
+            if (ModelState.IsValid)
+            {
             /*string fileName = Path.GetFileName(userViewModel.ProfileImageFile.FileName);
             userViewModel.ProfileImage = "~/Media/Users/" + fileName;
             fileName = Path.Combine(Server.MapPath("~/Media/Images/"), fileName);
@@ -56,9 +58,9 @@ namespace Frontend.Controllers
             {
                 unit.genericDAL.Add(user);
                 unit.Complete();
+                }
             }
-
-            return RedirectToAction("Index", "Profile");
+                return View();
         }
 
         public ActionResult Edit(int id)
