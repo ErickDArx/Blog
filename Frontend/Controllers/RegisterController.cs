@@ -59,8 +59,13 @@ namespace Frontend.Controllers
                 unit.genericDAL.Add(user);
                 unit.Complete();
                 }
-            }
                 return View();
+            }
+            else
+            {
+                return RedirectToAction("Index","News");
+            }
+
         }
 
         public ActionResult Edit(int id)
