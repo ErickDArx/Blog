@@ -19,13 +19,13 @@ namespace Frontend.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(UserViewModel userViewModel)
+        public ActionResult Index(UserViewModel userViewModel)
         {
             User user;
             using (UnitOfWork<User> unit = new UnitOfWork<User>(new BDContext()))
             {
                 Expression<Func<User, bool>> query =
-                    (u => u.Username.Equals(userViewModel.Username) && u.UserPassword.Equals(userViewModel.UserPassword));
+                    u => u.Email.Equals(userViewModel.Email) && u.UserPassword.Equals(userViewModel.UserPassword);
                 user = unit.genericDAL.Find(query).ToList().FirstOrDefault();
             }
 
@@ -37,14 +37,17 @@ namespace Frontend.Controllers
             else
             {
                 Session["userId"] = user.ID;
-                Session["UserName"] = user.Username;
+                Session["Email"] = user.Email;
+                Session["Name"] = user.FirtName;
+                Session["LastName"] = user.LastName;
 
-                var authTicket = new FormsAuthenticationTicket(user.Username, true, 100000);
+
+                var authTicket = new FormsAuthenticationTicket(user.Email, true, 100000);
                 var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(authTicket));
 
                 Response.Cookies.Add(cookie);
                 var name = User.Identity.Name;
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Profile");
             }
         }
 

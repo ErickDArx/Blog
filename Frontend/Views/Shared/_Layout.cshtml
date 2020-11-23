@@ -8,10 +8,12 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;1,900&display=swap" rel="stylesheet">
 </head>
-<body style="background: #1A1A2E" class="text-white">
+<body class="text-dark">
 
-    <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #0F3460">
+    <nav class="navbar navbar-expand-sm navbar-dark text-dark font-weight-bolder" style=" background-color: #0F3460">
         <div class="container">
             <a class="navbar-brand text-white" href="#">CRGaming</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #FF1D42">
@@ -23,7 +25,7 @@
                         <a  style="border-color: #FF1D42" class="text-white nav-link text-center btn-block btn" href="@Url.Action("Create","Register")">Registrarme <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active m-1">
-                        <a style="background-color: #FF1D42" class="text-white nav-link text-center btn-block  btn" href="@Url.Action("Index","Register")">Acceder <span class="sr-only">(current)</span></a>
+                        <a style="background-color: #FF1D42" class="text-white nav-link text-center btn-block  btn" href="@Url.Action("Index","Login")">Acceder <span class="sr-only">(current)</span></a>
                     </li>
 
                 </ul>
@@ -44,28 +46,16 @@
     }
     else
     {
-        <div class="card border-0 bg-transparent" style="margin-top: 4rem;">
-            <div class="card-body text-center text-white h1">
+        <div class="card border-0 bg-transparent mt-1">
+            <div class="card-body text-center text-white h1 text-dark font-weight-bold">
                 Noticias
             </div>
         </div>
         <div class="container card-body text-center text-white text-center">
-            <img src="~/Imagenes/Grupo 100.png"  alt="Alternate Text" class="img-fluid"/>
+            <img src="~/Imagenes/Grupo 100.png"  alt="Alternate Text" class="img-fluid shadow"/>
         </div>
     }
 
-
-    <div class="container card-footer bg-transparent ">
-
-        <ul class="nav justify-content-center">
-            <li class="nav-item"> <a href="#" class="mr-1 nav-link btn btn-outline-primary text-white">PC</a> </li>
-            <li class="nav-item"> <a href="#" class="mr-1 nav-link  btn btn-outline-primary text-white">PlayStation <i class="fa fa-playstation"></i></a> </li>
-            <li class="nav-item"> <a href="#" class="mr-1 nav-link  btn btn-outline-primary text-white">Xbox</a> </li>
-            <li class="nav-item"> <a href="#" class="mr-1 nav-link  btn btn-outline-primary text-white">Nintendo</a> </li>
-            <li class="nav-item"> <a href="#" class="mr-1 nav-link  btn btn-outline-primary text-white">Android e IOS</a> </li>
-        </ul>
-
-    </div>
     <div class="" style="margin-top:1rem">
         @RenderBody()
         <hr />

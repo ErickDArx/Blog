@@ -1,0 +1,51 @@
+﻿@model Backend.Entities.User
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+<div class=" container">
+    <div class="card-body">
+        <h5 class="card-title text-center">Inicio de Sesion</h5>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal row">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="col-md-12 mb-3">
+
+                    <label for="">Correo</label>
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "micorreo@gmail.com", @id = "correo", type = "email", @style = "max-width: 100%" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                </div>
+
+
+                <div class="col-md-12 mb-3">
+                    <label>Contraseña</label>
+                    @Html.EditorFor(model => model.UserPassword, new { htmlAttributes = new { @class = "form-control", @placeholder = "****************", @style = "max-width: 100%", Type = "password" } })
+                    @Html.ValidationMessageFor(model => model.UserPassword, "", new { @class = "text-danger" })
+                </div>
+
+
+
+                <div class="col-md-12 mb-2">
+                    <input type="submit" value="Inicia Sesion" class="btn btn-primary btn-block" />
+                </div>
+
+                <div class="col-md-12 mt-2">
+                    <a href="@Url.Action("Index","News")" class="btn btn-dark btn-block"><h6>Crea tu cuenta de Star Technology</h6></a>
+                </div>
+            </div>
+
+
+
+        }
+
+    </div>
+</div>

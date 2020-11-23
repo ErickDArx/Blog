@@ -19,7 +19,8 @@ namespace Frontend.Controllers
                 Email = user.Email,
                 UserPassword = user.UserPassword,
                 ProfileImage = user.ProfileImage,
-                UserRol=user.UserRol=2,
+                UserRol=user.UserRol='2',
+                
             };
         }
 
@@ -59,13 +60,13 @@ namespace Frontend.Controllers
                 unit.genericDAL.Add(user);
                 unit.Complete();
                 }
-                return View();
+                return RedirectToAction("Index", "Profile");
             }
             else
             {
-                return RedirectToAction("Index","News");
+                Response.Write("<script>alert('Por favor ingrese un correo válido.')</script>");
             }
-
+            return View();
         }
 
         public ActionResult Edit(int id)
