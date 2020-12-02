@@ -19,7 +19,7 @@ namespace Frontend.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(UserViewModel userViewModel)
+        public ActionResult Autherize(UserViewModel userViewModel)
         {
             User user;
             using (UnitOfWork<User> unit = new UnitOfWork<User>(new BDContext()))
@@ -32,7 +32,7 @@ namespace Frontend.Controllers
             if (user == null)
             {
                 userViewModel.LoginErrorMessage = "Credenciales incorrectos";
-                return View("Login", userViewModel);
+                return View("Index", userViewModel);
             }
             else
             {
@@ -40,7 +40,6 @@ namespace Frontend.Controllers
                 Session["Email"] = user.Email;
                 Session["Name"] = user.FirtName;
                 Session["LastName"] = user.LastName;
-
 
                 var authTicket = new FormsAuthenticationTicket(user.Email, true, 100000);
                 var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(authTicket));

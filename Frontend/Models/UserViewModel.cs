@@ -14,6 +14,7 @@ namespace Frontend.Models
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        [Required(ErrorMessage = "Debe ingresar un correo electrónico")]
         public string Email { get; set; }
         public string Username { get; set; }
 

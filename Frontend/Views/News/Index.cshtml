@@ -5,6 +5,28 @@
 }
 
 <div class="container">
+    @if (ViewBag.Title == "Registro")
+    {
+        <div class="card card-img-top  bg-transparent border-0">
+            <img class="img-fluid" style="" src="~/Imagenes/Grupo 98.png" alt="Alternate Text" />
+            <div class="container card-body text-left h1"
+                 style="">
+                Unete a la comunidad menos toxica de internet
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <div class="card border-0 bg-transparent mt-1">
+            <div class="card-body text-center text-white h1 text-dark font-weight-bold">
+                Noticias
+            </div>
+        </div>
+        <div class="container card-body text-center text-white text-center">
+            <img src="~/Imagenes/Grupo 100.png" alt="Alternate Text" class="img-fluid shadow" />
+        </div>
+    }
 
     <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
 
@@ -106,28 +128,28 @@
             <a class="btn btn-dark btn-block" href="@Url.Action("Index", "Index")" role="button">Crear mi cuenta</a>
         </div>
         <div class="col-md-6 container">
-            <img src="~/Imagenes/Grupo 40.png" alt="Alternate Text" class="img-fluid" style="45rem"/>
+            <img src="~/Imagenes/Grupo 40.png" alt="Alternate Text" class="img-fluid" style="45rem" />
         </div>
     </div>
 
-    </div>
-    <h2 class="container">Proximos eventos</h2>
+</div>
+<h2 class="container">Proximos eventos</h2>
 
-    <div class="container card  bg-transparent" style="">
-        <div class="row no-gutters">
-            <div class="col-md-4">
-                <img src="https://pbs.twimg.com/media/EX-Tgm9XgAAjV6S.png" class="text-center card-img" alt="..." style="width:80%">
-            </div>
-            <div class="col-md-8">
-                <div class="border-left card-body">
-                    <h3 class="card-title">Conferencia E3 2021</h3>
-                    <p class="card-text">La Electronic Entertainment Expo, más conocida por su abreviatura E3, es la convención de videojuegos más importante de la industria, en la que diversas compañías de videojuegos hablan de sus próximos lanzamientos, y algunas veces de su software y hardware.</p>
-                    <p class="text-white btn rounded-pill bg-dark">Fecha del evento: 27/06/2021</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
+<div class="container card  bg-transparent" style="">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src="https://pbs.twimg.com/media/EX-Tgm9XgAAjV6S.png" class="text-center card-img" alt="..." style="width:80%">
+        </div>
+        <div class="col-md-8">
+            <div class="border-left card-body">
+                <h3 class="card-title">Conferencia E3 2021</h3>
+                <p class="card-text">La Electronic Entertainment Expo, más conocida por su abreviatura E3, es la convención de videojuegos más importante de la industria, en la que diversas compañías de videojuegos hablan de sus próximos lanzamientos, y algunas veces de su software y hardware.</p>
+                <p class="text-white btn rounded-pill bg-dark">Fecha del evento: 27/06/2021</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
         </div>
     </div>
+</div>
 
 
 
