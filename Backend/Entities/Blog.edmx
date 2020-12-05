@@ -19,19 +19,31 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NewsID" Type="int" />
-          <Property Name="UserID" Type="int" />
+          <Property Name="NewsID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="News">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="URL" Type="nchar" MaxLength="10" />
           <Property Name="Title" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Body" Type="varchar(max)" Nullable="false" />
           <Property Name="PublishDate" Type="date" Nullable="false" />
           <Property Name="BannerImage" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="BannerAltTag" Type="varchar" MaxLength="50" />
           <Property Name="UserID" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Blog de noticias.dbo.NewsTags' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="NewsTags">
+          <Key>
+            <PropertyRef Name="NewsID" />
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="NewsID" Type="int" Nullable="false" />
+          <Property Name="TagID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -45,25 +57,25 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Emails" Type="varchar" MaxLength="255" />
+          <Property Name="Emails" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="Tags">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TagName" Type="varchar" MaxLength="55" />
+          <Property Name="TagName" Type="varchar" MaxLength="55" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirtName" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="LastName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="FirtName" Type="varchar" MaxLength="255" />
+          <Property Name="LastName" Type="varchar" MaxLength="255" />
           <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="UserPassword" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="ProfileImage" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ProfileImage" Type="varchar" MaxLength="255" />
           <Property Name="UserRol" Type="int" />
           <Property Name="Username" Type="nchar" MaxLength="10" />
         </EntityType>
@@ -80,7 +92,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Favorites__NewsI__3B75D760">
-          <End Role="News" Type="Self.News" Multiplicity="0..1" />
+          <End Role="News" Type="Self.News" Multiplicity="1" />
           <End Role="Favorites" Type="Self.Favorites" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="News">
@@ -92,7 +104,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Favorites__UserI__3C69FB99">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Favorites" Type="Self.Favorites" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -112,6 +124,30 @@
             </Principal>
             <Dependent Role="News">
               <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NewsTags__NewsID__37A5467C">
+          <End Role="News" Type="Self.News" Multiplicity="1" />
+          <End Role="NewsTags" Type="Self.NewsTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="News">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NewsTags">
+              <PropertyRef Name="NewsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NewsTags__TagID__38996AB5">
+          <End Role="Tags" Type="Self.Tags" Multiplicity="1" />
+          <End Role="NewsTags" Type="Self.NewsTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NewsTags">
+              <PropertyRef Name="TagID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -135,6 +171,193 @@
           <EntitySet Name="Suscriptions" EntityType="Self.Suscriptions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tags" EntityType="Self.Tags" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewsTags" EntityType="Self.NewsTags" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [NewsTags].[NewsID] AS [NewsID], 
+    [NewsTags].[TagID] AS [TagID]
+    FROM [dbo].[NewsTags] AS [NewsTags]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Comments__UserID__412EB0B6" Association="Self.FK__Comments__UserID__412EB0B6">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Favorites__NewsI__3B75D760" Association="Self.FK__Favorites__NewsI__3B75D760">
+            <End Role="News" EntitySet="News" />
+            <End Role="Favorites" EntitySet="Favorites" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Favorites__UserI__3C69FB99" Association="Self.FK__Favorites__UserI__3C69FB99">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Favorites" EntitySet="Favorites" />
+          </AssociationSet>
+          <AssociationSet Name="FK__News__UserID__35BCFE0A" Association="Self.FK__News__UserID__35BCFE0A">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NewsTags__NewsID__37A5467C" Association="Self.FK__NewsTags__NewsID__37A5467C">
+            <End Role="News" EntitySet="News" />
+            <End Role="NewsTags" EntitySet="NewsTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NewsTags__TagID__38996AB5" Association="Self.FK__NewsTags__TagID__38996AB5">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="NewsTags" EntitySet="NewsTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__UserRol__30F848ED" Association="Self.FK__Users__UserRol__30F848ED">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Blog" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Content" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CommentDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Comments__UserID__412EB0B6" FromRole="Comments" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Favorite">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NewsID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="News" Relationship="Self.FK__Favorites__NewsI__3B75D760" FromRole="Favorites" ToRole="News" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Favorites__UserI__3C69FB99" FromRole="Favorites" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PublishDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BannerImage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="Favorites" Relationship="Self.FK__Favorites__NewsI__3B75D760" FromRole="News" ToRole="Favorites" />
+          <NavigationProperty Name="User" Relationship="Self.FK__News__UserID__35BCFE0A" FromRole="News" ToRole="Users" />
+          <NavigationProperty Name="Tags" Relationship="Self.NewsTags" FromRole="News" ToRole="Tags" />
+          <Property Name="URL" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="BannerAltTag" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Users__UserRol__30F848ED" FromRole="Roles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Suscription">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Emails" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagName" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="News" Relationship="Self.NewsTags" FromRole="Tags" ToRole="News" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirtName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProfileImage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UserRol" Type="Int32" />
+          <Property Name="Username" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK__Comments__UserID__412EB0B6" FromRole="Users" ToRole="Comments" />
+          <NavigationProperty Name="Favorites" Relationship="Self.FK__Favorites__UserI__3C69FB99" FromRole="Users" ToRole="Favorites" />
+          <NavigationProperty Name="News" Relationship="Self.FK__News__UserID__35BCFE0A" FromRole="Users" ToRole="News" />
+          <NavigationProperty Name="Role" Relationship="Self.FK__Users__UserRol__30F848ED" FromRole="Users" ToRole="Roles" />
+        </EntityType>
+        <Association Name="FK__Comments__UserID__412EB0B6">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Favorites__NewsI__3B75D760">
+          <End Role="News" Type="Self.News" Multiplicity="1" />
+          <End Role="Favorites" Type="Self.Favorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="News">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Favorites">
+              <PropertyRef Name="NewsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Favorites__UserI__3C69FB99">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Favorites" Type="Self.Favorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Favorites">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__News__UserID__35BCFE0A">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__UserRol__30F848ED">
+          <End Role="Roles" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="UserRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="NewsTags">
+          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <End Role="Tags" Type="Self.Tag" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="BDContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="Favorites" EntityType="Self.Favorite" />
+          <EntitySet Name="News" EntityType="Self.News" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Suscriptions" EntityType="Self.Suscription" />
+          <EntitySet Name="Tags" EntityType="Self.Tag" />
+          <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK__Comments__UserID__412EB0B6" Association="Self.FK__Comments__UserID__412EB0B6">
             <End Role="Users" EntitySet="Users" />
             <End Role="Comments" EntitySet="Comments" />
@@ -155,170 +378,9 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
-    <!-- CSDL content -->
-    <edmx:ConceptualModels>
-      <Schema Namespace="Blog" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Comment">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Content" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CommentDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UserID" Type="Int32" />
-          <NavigationProperty Name="User" Relationship="Self.FK__Comments__UserID__36B12243" FromRole="Comments" ToRole="Users" />
-        </EntityType>
-        <EntityType Name="Favorite">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NewsID" Type="Int32" />
-          <Property Name="UserID" Type="Int32" />
-          <NavigationProperty Name="News" Relationship="Self.FK__Favorites__NewsI__30F848ED" FromRole="Favorites" ToRole="News" />
-          <NavigationProperty Name="User" Relationship="Self.FK__Favorites__UserI__31EC6D26" FromRole="Favorites" ToRole="Users" />
-        </EntityType>
-        <EntityType Name="News">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PublishDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="BannerImage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserID" Type="Int32" />
-          <NavigationProperty Name="Favorites" Relationship="Self.FK__Favorites__NewsI__30F848ED" FromRole="News" ToRole="Favorites" />
-          <NavigationProperty Name="User" Relationship="Self.FK__News__UserID__2B3F6F97" FromRole="News" ToRole="Users" />
-        </EntityType>
-        <EntityType Name="Role">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleName" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Users" Relationship="Self.FK__Users__UserRol__267ABA7A" FromRole="Roles" ToRole="Users" />
-        </EntityType>
-        <EntityType Name="Suscription">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Emails" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Tag">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TagName" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirtName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserPassword" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ProfileImage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserRol" Type="Int32" />
-          <NavigationProperty Name="Comments" Relationship="Self.FK__Comments__UserID__36B12243" FromRole="Users" ToRole="Comments" />
-          <NavigationProperty Name="Favorites" Relationship="Self.FK__Favorites__UserI__31EC6D26" FromRole="Users" ToRole="Favorites" />
-          <NavigationProperty Name="News" Relationship="Self.FK__News__UserID__2B3F6F97" FromRole="Users" ToRole="News" />
-          <NavigationProperty Name="Role" Relationship="Self.FK__Users__UserRol__267ABA7A" FromRole="Users" ToRole="Roles" />
-          <Property Name="Username" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-        </EntityType>
-        <Association Name="FK__Comments__UserID__36B12243">
-          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Comments">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Favorites__NewsI__30F848ED">
-          <End Role="News" Type="Self.News" Multiplicity="0..1" />
-          <End Role="Favorites" Type="Self.Favorite" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="News">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Favorites">
-              <PropertyRef Name="NewsID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Favorites__UserI__31EC6D26">
-          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Favorites" Type="Self.Favorite" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Favorites">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__News__UserID__2B3F6F97">
-          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
-          <End Role="News" Type="Self.News" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="News">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Users__UserRol__267ABA7A">
-          <End Role="Roles" Type="Self.Role" Multiplicity="0..1" />
-          <End Role="Users" Type="Self.User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Users">
-              <PropertyRef Name="UserRol" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="BDContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Comments" EntityType="Self.Comment" />
-          <EntitySet Name="Favorites" EntityType="Self.Favorite" />
-          <EntitySet Name="News" EntityType="Self.News" />
-          <EntitySet Name="Roles" EntityType="Self.Role" />
-          <EntitySet Name="Suscriptions" EntityType="Self.Suscription" />
-          <EntitySet Name="Tags" EntityType="Self.Tag" />
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK__Comments__UserID__36B12243" Association="Self.FK__Comments__UserID__36B12243">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Comments" EntitySet="Comments" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Favorites__NewsI__30F848ED" Association="Self.FK__Favorites__NewsI__30F848ED">
+          <AssociationSet Name="NewsTags" Association="Self.NewsTags">
             <End Role="News" EntitySet="News" />
-            <End Role="Favorites" EntitySet="Favorites" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Favorites__UserI__31EC6D26" Association="Self.FK__Favorites__UserI__31EC6D26">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Favorites" EntitySet="Favorites" />
-          </AssociationSet>
-          <AssociationSet Name="FK__News__UserID__2B3F6F97" Association="Self.FK__News__UserID__2B3F6F97">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="News" EntitySet="News" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Users__UserRol__267ABA7A" Association="Self.FK__Users__UserRol__267ABA7A">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="Users" EntitySet="Users" />
+            <End Role="Tags" EntitySet="Tags" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -349,6 +411,8 @@
           <EntitySetMapping Name="News">
             <EntityTypeMapping TypeName="Blog.News">
               <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="BannerAltTag" ColumnName="BannerAltTag" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Body" ColumnName="Body" />
@@ -385,7 +449,6 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="Blog.User">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FirtName" ColumnName="FirtName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -393,9 +456,18 @@
                 <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
                 <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
                 <ScalarProperty Name="UserRol" ColumnName="UserRol" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="NewsTags" TypeName="Blog.NewsTags" StoreEntitySet="NewsTags">
+            <EndProperty Name="News">
+              <ScalarProperty Name="ID" ColumnName="NewsID" />
+            </EndProperty>
+            <EndProperty Name="Tags">
+              <ScalarProperty Name="ID" ColumnName="TagID" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -413,7 +485,7 @@
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

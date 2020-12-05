@@ -21,6 +21,7 @@ namespace Frontend.Controllers
                 Body = news.Body,
                 BannerImage = news.BannerImage,
                 PublishDate = news.PublishDate,
+                URL = news.URL,
                 UserID = (int)news.UserID
             };
         }
@@ -32,6 +33,7 @@ namespace Frontend.Controllers
                 Title = newsViewModel.Title,
                 Body = newsViewModel.Body,
                 BannerImage = newsViewModel.BannerImage,
+                URL = newsViewModel.URL,
                 PublishDate = newsViewModel.PublishDate,
                 UserID = newsViewModel.UserID
             };
@@ -62,6 +64,7 @@ namespace Frontend.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Create(NewsViewModel newsViewModel)
         {
             string fileName = Path.GetFileName(newsViewModel.BannerImageFile.FileName);

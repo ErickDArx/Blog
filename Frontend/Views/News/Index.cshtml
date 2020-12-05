@@ -19,12 +19,18 @@
     else
     {
         <div class="card border-0 bg-transparent mt-1">
-            <div class="card-body text-center text-white h1 text-dark font-weight-bold">
-                Noticias
+            <div class="text-center">
+                <h1>Portada</h1>
+                <div class="nav sub-menu">
+                    <ul>
+                        <li><a href="/tags/PC">PC</a></li>
+                        <li><a href="/tags/PlayStation">PlayStation</a></li>
+                        <li><a href="/tags/Xbox">Xbox</a></li>
+                        <li><a href="/tags/Nintendo">Nintendo</a></li>
+                        <li><a href="/tags/Portatil">Android e IOS</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="container card-body text-center text-white text-center">
-            <img src="~/Imagenes/Grupo 100.png" alt="Alternate Text" class="img-fluid shadow" />
         </div>
     }
 
@@ -32,29 +38,26 @@
 
         <div class="carousel-inner">
             <div class="container">
-                <h2>Ultimas Actualizaciones</h2>
+                <h2>Noticias destacadas</h2>
 
                 <div id="carouselExampleInterval" class="container carousel slide" data-ride="carousel">
 
                     <div class="carousel-inner">
                         @{int i = 0;}
-                        @foreach (var iterador in Model)
+                        @foreach (var item in Model)
                         {
                             {
                                 i++;
                                 var active = i == 1 ? "active" : "";
                                 <div class="carousel-item @active">
-                                    <img src="@Html.DisplayFor(modelItem => iterador.BannerImage)" class="d-block w-100" alt="...">
+                                    <img src="@Url.Content(item.BannerImage)" class="d-block w-100" alt="...">
                                     <div class="carousel-caption d-none d-md-block">
-                                        <h2 class="bg-dark mt-3 mb-3">@Html.DisplayFor(modelItem => iterador.Title)</h2>
-                                        <button type="button" class="btn btn-block btn-primary">Ver noticia</button>
+                                        <h2 class="bg-dark mt-3 mb-3">@Html.DisplayFor(modelItem => item.Title)</h2>
+                                        <a class="btn btn-block btn-primary" href="/noticias/@item.URL">Leer más</a>
                                     </div>
                                 </div>
-
                             }
                         }
-
-
                     </div>
                 </div>
             </div>
@@ -62,20 +65,17 @@
     </div>
 </div>
 
-<h2 class="mt-4 mb-2 container">Noticias destacadas</h2>
+<h2 class="mt-4 mb-2 container">Todas las noticias</h2>
 
 
-<div class="container ow container align-content-center">
+<div class="container row container align-content-center">
     @if (Model.Count() > 0)
     {
 
         foreach (var item in Model)
         {
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 mt-2 mb-2">
-
-
-                <img src="@Html.DisplayFor(modelItem => item.BannerImage)"
-                     class="card-img border-0" alt="..." style="width:100%">
+                <a href="/noticias/@item.URL"><img src="@Url.Content(item.BannerImage)" class="card-img border-0" alt="..." style="width:100%" /></a>
                 <div class="card-img-overlay">
                     <p class="btn rounded-pill bg-dark text-white">@Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.PublishDate))</p>
                 </div>
@@ -84,10 +84,6 @@
                     <p class="card-text col-12 text-truncate">@Html.DisplayFor(modelItem => item.Body)</p>
                     <p class="card-text"><small class="text-muted"></small></p>
                 </div>
-
-
-
-
             </div>
         }
     }
@@ -115,7 +111,6 @@
             </div>
         }
     </div>
-
 </div>
 
 <br />
@@ -125,7 +120,7 @@
         <div class="col-md-6 container text-white">
             <h1 class="display-4">¿Todavia no te has suscrito?</h1>
             <p class="lead">No esperes mas, con tu acceso podras comentar y guardar tus publicaciones favoritas</p>
-            <a class="btn btn-dark btn-block" href="@Url.Action("Index", "Index")" role="button">Crear mi cuenta</a>
+            <a class="btn btn-dark btn-block" href="@Url.Action("Index", "Login")" role="button">Crear mi cuenta</a>
         </div>
         <div class="col-md-6 container">
             <img src="~/Imagenes/Grupo 40.png" alt="Alternate Text" class="img-fluid" style="45rem" />

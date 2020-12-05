@@ -19,7 +19,7 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
-                    @if (Session["Name"] is null)
+                    @if (Session["Name"] is null && !(@ViewBag.Title == "Create"))
                     {
                         <li class="nav-item active m-1">
                             <a style="border-color: #FF1D42" class="text-white nav-link text-center btn-block btn" href="@Url.Action("Create","Register")">Registrarme <span class="sr-only">(current)</span></a>
@@ -28,10 +28,19 @@
                             <a style="background-color: #FF1D42" class="text-white nav-link text-center btn-block  btn" href="@Url.Action("Index","Login")">Acceder <span class="sr-only">(current)</span></a>
                         </li>
                     }
+                    else if (@ViewBag.Title == "Create")
+                    {
+                        <li class="nav-item active m-1">
+                            <a style="background-color: #FF1D42" class="text-white nav-link text-center btn-block  btn" href="@Url.Action("Index","News")">Volver al inicio<span class="sr-only">(current)</span></a>
+                        </li>
+                    }
                     else
                     {
                         <li class="nav-item active m-1">
                             <a style="background-color: #FF1D42" class="text-white nav-link text-center btn-block  btn" href="@Url.Action("Logout","Login")">Cerrar Sesión <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active m-1">
+                            <a style="background-color: #FF1D42" class="text-white nav-link text-center btn-block  btn" href="@Url.Action("Index","News")">Volver al inicio<span class="sr-only">(current)</span></a>
                         </li>
                     }
                 </ul>
@@ -39,7 +48,9 @@
         </div>
     </nav>
     <div class="" style="margin-top:1rem">
-        @RenderBody()
+        <div class="container" ">
+            @RenderBody()
+        </div>
         <hr />
         <footer class="text-center ">
             <p>&copy; Copyright @DateTime.Now.Year - CRGaming</p>

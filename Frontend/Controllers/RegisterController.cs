@@ -9,18 +9,18 @@ namespace Frontend.Controllers
 {
     public class RegisterController : Controller
     {
-        private User Convert(UserViewModel user)
+        private User Convert(UserViewModel userViewModel)
         {
             return new User
             {
-                ID = user.UserID,
-                FirtName = user.FirstName,
-                LastName = user.LastName,
-                Email = user.Email,
-                UserPassword = user.UserPassword,
-                ProfileImage = user.ProfileImage,
-                UserRol=user.UserRol='2',
-                
+                ID = userViewModel.UserID,
+                FirtName = userViewModel.FirstName,
+                LastName = userViewModel.LastName,
+                Email = userViewModel.Email,
+                UserPassword = userViewModel.UserPassword,
+                ProfileImage = userViewModel.ProfileImage,
+                UserRol = userViewModel.UserRol,
+
             };
         }
 
@@ -44,29 +44,30 @@ namespace Frontend.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Create(UserViewModel userViewModel)
         {
             if (ModelState.IsValid)
             {
-            /*string fileName = Path.GetFileName(userViewModel.ProfileImageFile.FileName);
-            userViewModel.ProfileImage = "~/Media/Users/" + fileName;
-            fileName = Path.Combine(Server.MapPath("~/Media/Images/"), fileName);
-            userViewModel.ProfileImageFile.SaveAs(fileName);*/
+                /*string fileName = Path.GetFileName(userViewModel.ProfileImageFile.FileName);
+                userViewModel.ProfileImage = "~/Media/Users/" + fileName;
+                fileName = Path.Combine(Server.MapPath("~/Media/Images/"), fileName);
+                userViewModel.ProfileImageFile.SaveAs(fileName);*/
 
-            User user = this.Convert(userViewModel);
-            using (UnitOfWork<User> unit = new UnitOfWork<User>(new BDContext()))
-            {
-                unit.genericDAL.Add(user);
-                unit.Complete();
+                User user = this.Convert(userViewModel);
+                user.UserRol = 1;
+                using (UnitOfWork<User> unit = new UnitOfWork<User>(new BDContext()))
+                {
+                    unit.genericDAL.Add(user);
+                    unit.Complete();
                 }
-                return RedirectToAction("Index", "Profile");
+
+                return RedirectToAction("Index", "Login");
             }
             else
             {
-                Response.Write("<script>alert('Por favor ingrese un correo válido.')</script>");
+                return View("Create", userViewModel);
             }
-            return View();
         }
 
         public ActionResult Edit(int id)

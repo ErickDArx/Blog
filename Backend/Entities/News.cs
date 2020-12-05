@@ -18,6 +18,7 @@ namespace Backend.Entities
         public News()
         {
             this.Favorites = new HashSet<Favorite>();
+            this.Tags = new HashSet<Tag>();
         }
     
         public int ID { get; set; }
@@ -26,9 +27,13 @@ namespace Backend.Entities
         public System.DateTime PublishDate { get; set; }
         public string BannerImage { get; set; }
         public Nullable<int> UserID { get; set; }
+        public string URL { get; set; }
+        public string BannerAltTag { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Favorite> Favorites { get; set; }
         public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tag> Tags { get; set; }
     }
 }

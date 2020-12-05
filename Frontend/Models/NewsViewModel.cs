@@ -16,6 +16,10 @@ namespace Frontend.Models
         [Required(ErrorMessage = "Debe ingresar un titulo")]
         public string Title { get; set; }
 
+        [Display(Name = "URL")]
+        [Required(ErrorMessage = "Debe ingresar un URL")]
+        public string URL { get; set; }
+
         [Display(Name = "Cuerpo")]
         [Required(ErrorMessage = "Debe digitar el Cuerpo")]
         public string Body { get; set; }
@@ -25,8 +29,12 @@ namespace Frontend.Models
         public DateTime PublishDate { get; set; }
 
         [Display(Name = "Imagen del Banner")]
-        //[Required(ErrorMessage = "Debe agregar un banner")]
+        [Required(ErrorMessage = "Debe agregar un banner")]
         public string BannerImage { get; set; }
+
+        [Display(Name = "Alt-Tag del Banner")]
+        [Required(ErrorMessage = "Debe agregar un banner")]
+        public string BannerAltTag { get; set; }
 
         public HttpPostedFileBase BannerImageFile { get; set; }
 

@@ -15,8 +15,8 @@ namespace Backend.Entities
     public partial class Favorite
     {
         public int ID { get; set; }
-        public Nullable<int> NewsID { get; set; }
-        public Nullable<int> UserID { get; set; }
+        public int NewsID { get; set; }
+        public int UserID { get; set; }
     
         public virtual News News { get; set; }
         public virtual User User { get; set; }

@@ -25,7 +25,7 @@ namespace Backend.DAL
             }
             catch (Exception)
             {
-
+                throw;
                 return false;
             }
         }

@@ -31,7 +31,7 @@ namespace Frontend.Controllers
 
             if (user == null)
             {
-                userViewModel.LoginErrorMessage = "Credenciales incorrectos";
+                ModelState.AddModelError("loginError", "Correo o contraseña incorrectos");
                 return View("Index", userViewModel);
             }
             else

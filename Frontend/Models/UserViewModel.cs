@@ -11,22 +11,22 @@ namespace Frontend.Models
     {
         [Key]
         public int UserID { get; set; }
-
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        [Display(Name = "Correo electrónico")]
         [Required(ErrorMessage = "Debe ingresar un correo electrónico")]
         public string Email { get; set; }
-        public string Username { get; set; }
 
+        public string Username { get; set; }
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Debe ingresar una contraseña")]
         [Display(Name = "Contraseña")]
         public string UserPassword { get; set; }
-
         public string LoginErrorMessage { get; set; }
-
         public string ProfileImage { get; set; }
         public HttpPostedFileBase ProfileImageFile { get; set; }
+
         public int UserRol { get; set; }
 
         public int CommentID { get; set; }

@@ -28,6 +28,7 @@ namespace Backend.DAL
             catch (Exception e)
             {
                 string msj = e.Message;
+                throw;
                 return false;
             }
 

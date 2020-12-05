@@ -4,19 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="270956d1903b49ef97fc68679367d19a" Name="Diagram1">
+      <Diagram DiagramId="bc8957f940b2428ab1f556ab1375488f" Name="Diagram1">
         <EntityTypeShape EntityType="Blog.Comment" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Blog.Favorite" Width="1.5" PointX="7.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Blog.Favorite" Width="1.5" PointX="7.5" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Blog.News" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="Blog.Role" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Blog.Role" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Blog.Suscription" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Blog.Tag" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Blog.Tag" Width="1.5" PointX="7.5" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Blog.User" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
-        <AssociationConnector Association="Blog.FK__Comments__UserID__36B12243" ManuallyRouted="false" />
-        <AssociationConnector Association="Blog.FK__Favorites__NewsI__30F848ED" ManuallyRouted="false" />
-        <AssociationConnector Association="Blog.FK__Favorites__UserI__31EC6D26" ManuallyRouted="false" />
-        <AssociationConnector Association="Blog.FK__News__UserID__2B3F6F97" ManuallyRouted="false" />
-        <AssociationConnector Association="Blog.FK__Users__UserRol__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="Blog.FK__Comments__UserID__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="Blog.FK__Favorites__NewsI__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="Blog.FK__Favorites__UserI__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="Blog.FK__News__UserID__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="Blog.FK__Users__UserRol__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="Blog.NewsTags" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
