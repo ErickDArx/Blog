@@ -153,6 +153,8 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Media\Images\Grupo 100.png" />
+    <Content Include="Media\Images\Grupo 40.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -285,10 +287,10 @@
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Views\Register\Create.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Comments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Media\Images\" />
     <Folder Include="Media\Users\" />
     <Folder Include="Views\Comment\" />
   </ItemGroup>

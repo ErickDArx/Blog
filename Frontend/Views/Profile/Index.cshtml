@@ -4,17 +4,31 @@
     ViewBag.Title = "Panel de administración";
 }
 
-<div class="container">
-    <h1>Administraci&oacute;n</h1>
-    <h2>Panel de control</h2>
+    <div class="container">
 
-    <p>@Html.ActionLink("Crear publicación", "Create", "News")</p>
+        <div class="row">
+            <div class="col-4 border text-center">
+                <div class="btn bg-primary rounded-circle p-5">
+                    <img src="" alt=""/>
+                </div>
+            </div>
+            <div class="col-7 border m-1">
+                <h2 class="text-black-50">@Session["Name"]</h2>
+                <h2 class="text-black-50">@Session["LastName"]</h2>
 
-    <p>@Html.ActionLink("Listar publicaciónes", "Index", "News")</p>
+            </div>
+        </div>
 
-    <h2>General</h2>
 
-    <h3>Mis publicaci&oacute;nes favoritas</h3>
+        <h1>Administraci&oacute;n</h1>
+        <h2>Panel de control</h2>
+        <p>@Html.ActionLink("Crear publicación", "Create", "News")</p>
 
-    <h3>Mis comentarios</h3>
-</div>
+        <p>@Html.ActionLink("Listar publicaciónes", "Index", "News")</p>
+
+        <h2>General</h2>
+
+        <h3>Mis publicaci&oacute;nes favoritas</h3>
+
+        <h3>Mis comentarios</h3>
+    </div>

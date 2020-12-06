@@ -4,99 +4,115 @@
     ViewBag.Title = "Index";
 }
 
-<div class="container">
-    @if (ViewBag.Title == "Registro")
-    {
-        <div class="card card-img-top  bg-transparent border-0">
-            <img class="img-fluid" style="" src="~/Imagenes/Grupo 98.png" alt="Alternate Text" />
-            <div class="container card-body text-left h1"
-                 style="">
-                Unete a la comunidad menos toxica de internet
+    <div class="container">
+
+        @if (Session["Name"] != null)
+        {
+            <div class="card card-img-top  bg-transparent border-0">
+                <img class="img-fluid" style="" src="~/Media/Images/Grupo 100.png" alt="Alternate Text" />
+                <div class="container card-body text-left h1"
+                     style="">
+                    ¡Hola @Session["Name"] !
+                </div>
             </div>
-        </div>
 
-    }
-    else
-    {
-        <div class="card border-0 bg-transparent mt-1">
-            <div class="card-body text-center text-white h1 text-dark font-weight-bold">
-                Noticias
+        }
+        else
+        {
+            <div class="card border-0 bg-transparent mt-1">
+                <div class="card-body text-center text-white h1 text-dark font-weight-bold">
+                    Noticias
+                </div>
             </div>
-        </div>
-        <div class="container card-body text-center text-white text-center">
-            <img src="~/Imagenes/Grupo 100.png" alt="Alternate Text" class="img-fluid shadow" />
-        </div>
-    }
+            <div class="container card-body text-center text-white text-center">
+                <img src="~/Media/Images/Grupo 100.png" alt="Alternate Text" class="img-fluid shadow" />
+            </div>
+        }
 
-    <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
+        <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
 
-        <div class="carousel-inner">
-            <div class="container">
-                <h2>Ultimas Actualizaciones</h2>
-
-                <div id="carouselExampleInterval" class="container carousel slide" data-ride="carousel">
-
-                    <div class="carousel-inner">
-                        @{int i = 0;}
-                        @foreach (var iterador in Model)
-                        {
-                            {
-                                i++;
-                                var active = i == 1 ? "active" : "";
-                                <div class="carousel-item @active">
-                                    <img src="@Html.DisplayFor(modelItem => iterador.BannerImage)" class="d-block w-100" alt="...">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h2 class="bg-dark mt-3 mb-3">@Html.DisplayFor(modelItem => iterador.Title)</h2>
-                                        <button type="button" class="btn btn-block btn-primary">Ver noticia</button>
-                                    </div>
-                                </div>
-
-                            }
-                        }
+            <div class="carousel-inner">
+                <div class="container">
+                    <div id="carouselExampleInterval" class="container carousel slide" data-ride="carousel">
 
 
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<h2 class="mt-4 mb-2 container">Noticias destacadas</h2>
+        <div class="row">
 
 
-<div class="container ow container align-content-center">
-    @if (Model.Count() > 0)
-    {
+            <div class="col-md-6 text-center">
+                <div id="" class="carousel slide" data-ride="carousel">
 
-        foreach (var item in Model)
-        {
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 mt-2 mb-2">
+                    <div class="carousel-inner">
+                        <div class="">
+                            <h2>Ultimas Actualizaciones</h2>
 
+                            <div class="carousel-inner">
+                                @{int i = 0;}
+                                @foreach (var iterador in Model)
+                                {
+                                    {
+                                        i++;
+                                        var active = i == 1 ? "active" : "";
+                                        <div class="carousel-item @active">
+                                            <img src="@Html.DisplayFor(modelItem => iterador.BannerImage)" class="d-block w-100" alt="...">
+                                            <div class="carousel-caption d-none d-md-block">
+                                                <h2 class="bg-dark mt-3 mb-3">@Html.DisplayFor(modelItem => iterador.Title)</h2>
+                                                <button type="button" class="btn btn-block btn-primary">Ver noticia</button>
+                                            </div>
+                                        </div>
 
-                <img src="@Html.DisplayFor(modelItem => item.BannerImage)"
-                     class="card-img border-0" alt="..." style="width:100%">
-                <div class="card-img-overlay">
-                    <p class="btn rounded-pill bg-dark text-white">@Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.PublishDate))</p>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body bg-primary rounded-bottom shadow blockquote">
-                    <h5 class="card-title"> @Html.DisplayFor(modelItem => item.Title)</h5>
-                    <p class="card-text col-12 text-truncate">@Html.DisplayFor(modelItem => item.Body)</p>
-                    <p class="card-text"><small class="text-muted"></small></p>
-                </div>
-
-
-
-
             </div>
-        }
-    }
-    else
-    {
+            <div class="col-md-5">
 
-        <p>No hay noticias que mostrar.</p>
-    }
-</div>
+                <h2 class="mb-2">Noticias destacadas</h2>
+                <div class=" border">
+                    @if (Model.Count() > 0)
+                    {
+
+                        foreach (var item in Model)
+                        {
+                            <div class="">
+
+
+                                <img src="@Html.DisplayFor(modelItem => item.BannerImage)"
+                                     class="card-img border-0 w-100" alt="..." style="">
+
+                                <div class="card-body bg-primary rounded-bottom shadow blockquote">
+                                    <h5 class="card-title"> @Html.DisplayFor(modelItem => item.Title)</h5>
+                                    <p class="card-text col-12 text-truncate">@Html.DisplayFor(modelItem => item.Body)</p>
+                                    <p class="card-text"><small class="text-muted"></small></p>
+                                </div>
+
+
+
+
+                            </div>
+                        }
+                    }
+                    else
+                    {
+
+                        <p>No hay noticias que mostrar.</p>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
 
 <div class="container">
     <h2>PC Gaming</h2>
@@ -128,7 +144,7 @@
             <a class="btn btn-dark btn-block" href="@Url.Action("Index", "Index")" role="button">Crear mi cuenta</a>
         </div>
         <div class="col-md-6 container">
-            <img src="~/Imagenes/Grupo 40.png" alt="Alternate Text" class="img-fluid" style="45rem" />
+            <img src="~/Imagenes/Grupo 40.png" alt="Alternate Text" class="img-fluid" style="width:45rem" />
         </div>
     </div>
 
