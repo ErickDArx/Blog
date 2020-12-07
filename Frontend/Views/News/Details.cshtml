@@ -1,0 +1,68 @@
+﻿@model Frontend.Models.NewsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+    <div>
+        <img class="w-100" src="@Html.DisplayFor(model => model.BannerImage)" alt="" />
+    </div>
+    <div class="container">
+        <div class="text-center shadow card border-0" style="margin-top: -4rem;padding: 0rem;background:#FF1D42">
+            <div class="row text-sm-center text-white">
+                <div class="col-sm-4 align-items-center mt-2 mb-2">
+
+                    <!--Aqui se añade la imagen de perfil del creador de la noticia-->
+                    <img src="https://assets.pokemon.com//assets/cms2-es-es/img/video-games/_tiles/pokemon-sword-shield/distributions/pikachu/inline/world.png" alt="" 
+                         class="rounded-circle bg-primary shadow-lg" style="width:6rem;height:6rem" />
+                </div>
+                <div class="col-sm-4 text-left mt-3 text-center align-items-center">
+                    <!--Necesito el nombre y apellidos del creador de la noticia-->
+                    <h5>Nombre y apellido del creador</h5>
+                    <div class="form-group">
+                    </div>
+                </div>
+
+                <!--Arreglar el formato de la fecha-->
+                <div class="col-sm-4 text-left pt-2 mt-4 text-center align-items-center">
+                    <h6>@Html.DisplayFor(model => model.PublishDate)</h6>
+                    <div class="form-group">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container">
+
+        <div class="mt-4">
+            <div class="row container text-white text-center">
+                <p class="rounded-pill bg-primary col-3 m-1">Aventuras</p>
+                <p class="rounded-pill bg-primary col-3 m-1">Aventuras</p>
+                <p class="rounded-pill bg-primary col-3 m-1">Aventuras</p>
+            </div>
+
+        </div>
+
+        <div class="mt-4">
+            <h1>@Html.DisplayFor(model => model.Title)</h1>
+        </div>
+
+        <div class="mt-4 text-justify">
+            @Html.DisplayFor(model => model.Body)
+        </div>
+
+        <!--Hacer una validacion para que solo el creador de la noticia pueda editar su publicacion-->
+        <p class="btn btn-block mt-4" style="background: #FF1D42">
+            @Html.ActionLink("Editar esta noticia", "Edit", new { id = Model.ID }, new { @class = "text-white" })
+
+        </p>
+        <p class="btn btn-block text-dark">
+            @Html.ActionLink("Regresar al Menu Principal", "Index", new { @class = "" })
+        </p>
+
+
+
+    </div>
+

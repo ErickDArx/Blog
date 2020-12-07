@@ -21,8 +21,10 @@ namespace Frontend.Controllers
                 Body = news.Body,
                 BannerImage = news.BannerImage,
                 PublishDate = news.PublishDate,
-                UserID = (int)news.UserID
+                UserID = (int)news.UserID,        
+
             };
+
         }
 
         private News Convert(NewsViewModel newsViewModel)
@@ -33,9 +35,12 @@ namespace Frontend.Controllers
                 Body = newsViewModel.Body,
                 BannerImage = newsViewModel.BannerImage,
                 PublishDate = newsViewModel.PublishDate,
-                UserID = newsViewModel.UserID
+                UserID = newsViewModel.UserID,
+                User = newsViewModel.User,
             };
+
         }
+
 
         // GET: News
         public ActionResult Index()
@@ -99,6 +104,35 @@ namespace Frontend.Controllers
             {
                 blog = unit.genericDAL.Get(id);
             }
+
+            return View(this.Convert(blog));
+        }
+
+        public ActionResult Details()
+        {
+
+            NewsViewModel user = new NewsViewModel { };
+
+            using (UnitOfWork<User> unit = new UnitOfWork<User>(new BDContext()))
+            {
+                user.Users = unit.genericDAL.GetAll();
+            }
+
+            return View(this.Convert(user));
+        }
+
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+
+            News blog;
+
+            using (UnitOfWork<News> unit = new UnitOfWork<News>(new BDContext()))
+            {
+                blog = unit.genericDAL.Get(id);
+
+            }
+
 
             return View(this.Convert(blog));
         }
