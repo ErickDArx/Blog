@@ -44,7 +44,7 @@
     <div class="row">
 
 
-        <div class="col-md-6 text-center">
+        <div class="col-md-6 ">
             <div id="" class="carousel slide" data-ride="carousel">
 
                 <div class="carousel-inner">
@@ -62,7 +62,9 @@
                                         <img src="@Html.DisplayFor(modelItem => iterador.BannerImage)" class="d-block w-100" alt="...">
                                         <div class="carousel-caption d-none d-md-block">
                                             <h2 class="bg-dark mt-3 mb-3">@Html.DisplayFor(modelItem => iterador.Title)</h2>
-
+                                            <p class="col-12 bg-danger">
+                                                @Session["comentarios"]
+                                            </p>
                                         </div>
                                     </div>
 
@@ -76,7 +78,7 @@
         <div class="col-md-5">
 
             <h2 class="mb-2">Noticias destacadas</h2>
-            <div class=" border">
+            <div class=" border" style="width:20rem">
                 @if (Model.Count() > 0)
                 {
 
@@ -86,13 +88,13 @@
 
 
                             <img src="@Html.DisplayFor(modelItem => item.BannerImage)"
-                                 class="card-img border-0 w-100" alt="..." style="">
+                                 class="card-img border-0 " alt="..." style="width:20rem">
 
-                            <div class="card-body bg-primary rounded-bottom shadow blockquote">
+                            <div class="card-body bg-primary rounded-bottom shadow blockquote" style="width:20rem">
                                 <h5 class="card-title"> @Html.DisplayFor(modelItem => item.Title)</h5>
                                 <p class="card-text col-12 text-truncate">@Html.DisplayFor(modelItem => item.Body)</p>
                                 <p class="card-text"><small class="text-muted"></small></p>
-                                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                @Html.ActionLink("Ver noticia", "Details", new { id = item.ID }, new {@class = "btn btn-dark btn-block"})
                             </div>
 
 
@@ -137,15 +139,15 @@
 
 <br />
 
-<div class="jumbotron jumbotron-fluid text-dark" style="background-color: #FF1D42">
-    <div class="row ">
-        <div class="col-md-6 container text-white">
+<div class=" jumbotron text-dark justify-content-center text-center" style="background-color: #FF1D42">
+    <div class="row">
+        <div class="col-md-6 text-white container">
             <h1 class="display-4">¿Todavia no te has suscrito?</h1>
             <p class="lead">No esperes mas, con tu acceso podras comentar y guardar tus publicaciones favoritas</p>
             <a class="btn btn-dark btn-block" href="@Url.Action("Index", "Index")" role="button">Crear mi cuenta</a>
         </div>
         <div class="col-md-6 container">
-            <img src="~/Imagenes/Grupo 40.png" alt="Alternate Text" class="img-fluid" style="width:45rem" />
+            <img src="~/Media/Images/Grupo 40.png" alt="Alternate Text" class="card-img"/>
         </div>
     </div>
 

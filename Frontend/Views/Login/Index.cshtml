@@ -6,7 +6,7 @@
 
 <div class="container">
     <p>
-        @Session["news"].ToString();
+        @Session["News"];
     </p>
     <h1 class="card-title text-center">Iniciar sesi&oacute;n</h1>
     @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))

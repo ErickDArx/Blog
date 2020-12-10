@@ -47,7 +47,14 @@ namespace Frontend.Controllers
                 comments = unit.genericDAL.GetAll().ToList();
             }
 
-            return View(comments);
+            List<CommentViewModel> lista = new List<CommentViewModel>();
+
+            foreach (var item in comments)
+            {
+                lista.Add(this.Convert(item));
+            }
+            Session["comentarios"] = lista;
+            return View();
         }
 
         public ActionResult Create()

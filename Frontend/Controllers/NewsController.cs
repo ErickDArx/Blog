@@ -48,9 +48,12 @@ namespace Frontend.Controllers
             List<News> news;
             using (UnitOfWork<News> unit = new UnitOfWork<News>(new BDContext()))
             {
+
                 List<News> lists = unit.genericDAL.GetAll().ToList();
                 news = lists;
+
             }
+            
 
             return View(news);
         }
