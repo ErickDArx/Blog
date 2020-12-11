@@ -9,7 +9,7 @@
     @if (Session["Name"] != null)
     {
         <div class="card card-img-top  bg-transparent border-0">
-            <img class="img-fluid mt-4" style="" src="~/Media/Images/Grupo 100.png" alt="Alternate Text" />
+            <img class="img-fluid mt-2" style="" src="~/Media/Images/Grupo 100.png" alt="Alternate Text" />
             <div class="container card-body text-left h1"
                  style="">
                 ¡Hola @Session["Name"] ! ¿ Ya viste el nuevo contenido ?
@@ -19,10 +19,8 @@
     }
     else
     {
-        <div class="card border-0 bg-transparent mt-1">
-            <div class="card-body text-center text-white h1 text-dark font-weight-bold">
-                Noticias
-            </div>
+        <div class="p-0 mt-3 bg-transparent">
+
         </div>
         <div class="container card-body text-center text-white text-center">
             <img src="~/Media/Images/Grupo 100.png" alt="Alternate Text" class="img-fluid" />
@@ -30,15 +28,16 @@
     }
 
 
-    <div class="row">
-        <div class="col-md-6 ">
-            <div id="" class="carousel slide" data-ride="carousel">
+    <div class="row border rounded-top">
+        <div class="col-md-6 border-right align-items-center">
+
+            <div id="" class="border-0 card carousel slide" data-ride="carousel">
 
                 <div class="carousel-inner">
                     <div class="">
-                        <h2>Ultimas Actualizaciones</h2>
+                        <h4 class="mb-3 mt-3">Ultimas Actualizaciones</h4>
 
-                        <div class="carousel-inner">
+                        <div class="carousel-inner shadow">
                             @{int i = 0;}
                             @foreach (var iterador in Model.News)
                             {
@@ -46,26 +45,68 @@
                                     i++;
                                     var active = i == 1 ? "active" : "";
                                     <div class="carousel-item @active">
-                                        <img src="@Html.DisplayFor(modelItem => iterador.BannerImage)" class="d-block w-100" alt="...">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <h2 class="bg-dark mt-3 mb-3">@Html.DisplayFor(modelItem => iterador.Title)</h2>
-                                            <p class="col-12 bg-danger">
-                                                @Session["comentarios"]
-                                            </p>
+                                        <img src="@Url.Content(iterador.BannerImage)" class=" d-block w-100 rounded-lg shadow" alt="..." style="width:35rem;height:20rem">
+                                        <div class=" p-0 m-0 rounded-bottom" style="background-color: #FF1D42">
+                                            <div class="card-footer text-white">
+                                                <div class="row" style="">
+                                                    <h4 class="col-12 text-truncate mt-3 mb-3 w-100">@Html.DisplayFor(modelItem => iterador.Title)</h4>
+
+                                                </div>
+                                            </div>
+
                                         </div>
+                                        <a href="@Url.Action("Details", new { id=iterador.ID })" class=" stretched-link"></a>
                                     </div>
 
                                 }
+
                             }
+
                         </div>
+
                     </div>
                 </div>
+
             </div>
+
         </div>
         <div class="col-md-6">
 
-            <h2 class="mb-2">Noticias destacadas</h2>
-            <div class=" border" style="width:20rem">
+            <h4 class="m-3" style="">¿Qué hay de nuevo para hoy?</h4>
+            <p class="p-1 col-7 ml-3 rounded-pill bg-primary text-sm-center text-white">Fecha : @DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year</p>
+            <div class="">
+                @foreach (var iterado in Model.News)
+                {
+
+                    if (iterado.PublishDate != DateTime.Now.Date)
+                    {
+
+                    }
+                    else
+                    {
+                <div class="row text-white rounded-lg m-2 shadow" style=" background-color: #0F3460">
+
+                    <div class="col-4 justify-content-center bg-light">
+                        <img src="@Url.Content(iterado.BannerImage)" class="img-fluid rounded mx-auto d-block"
+                             style="height:7rem" />
+                        <a href="@Url.Action("Details", new { id=iterado.ID })" class=" stretched-link"></a>
+                    </div>
+
+                    <div class="font-weight-bold h5 col-8 text-break">
+                        @Html.DisplayFor(modelItem => iterado.Title)
+
+                        <div class="font-weight-light text-truncate">
+                            @Html.DisplayFor(modelItem => iterado.Body)
+                        </div>
+                        <a href="@Url.Action("Details", new { id=iterado.ID })" class=" stretched-link"></a>
+                    </div>
+
+
+
+                </div>
+                    }
+
+                }
 
             </div>
         </div>
@@ -76,7 +117,7 @@
 
 
 
-<div class="container">
+@*<div class="container">
     <h2>PC Gaming</h2>
     <div class="row">
         @foreach (var iterado in Model.News)
@@ -101,7 +142,7 @@
         }
     </div>
 
-</div>
+</div>*@
 
 <br />
 
@@ -113,7 +154,7 @@
             <a class="btn btn-dark btn-block" href="@Url.Action("Index", "Index")" role="button">Crear mi cuenta</a>
         </div>
         <div class="col-md-6 container">
-            <img src="~/Media/Images/Grupo 40.png" alt="Alternate Text" class="card-img" />
+            <img src="~/Media/Images/Grupo 40.png" alt="Alternate Text" class="card-img" style="width:20rem"/>
         </div>
     </div>
 
