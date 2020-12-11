@@ -45,17 +45,14 @@ namespace Frontend.Controllers
         // GET: News
         public ActionResult Index()
         {
-            List<News> news;
-            using (UnitOfWork<News> unit = new UnitOfWork<News>(new BDContext()))
-            {
 
-                List<News> lists = unit.genericDAL.GetAll().ToList();
-                news = lists;
+            BDContext bd = new BDContext();
+            UnionViewModel unionViewModel = new UnionViewModel();
+            unionViewModel.News = bd.News.ToList();
+            unionViewModel.comments = bd.Comments.ToList();
+            unionViewModel.Users = bd.Users.ToList();
 
-            }
-            
-
-            return View(news);
+            return View(unionViewModel);
         }
 
         public ActionResult Create()

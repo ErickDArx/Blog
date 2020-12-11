@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Backend.Entities.News>
+﻿@model Frontend.Models.UnionViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -9,10 +9,10 @@
     @if (Session["Name"] != null)
     {
         <div class="card card-img-top  bg-transparent border-0">
-            <img class="img-fluid" style="" src="~/Media/Images/Grupo 100.png" alt="Alternate Text" />
+            <img class="img-fluid mt-4" style="" src="~/Media/Images/Grupo 100.png" alt="Alternate Text" />
             <div class="container card-body text-left h1"
                  style="">
-                ¡Hola @Session["Name"] !
+                ¡Hola @Session["Name"] ! ¿ Ya viste el nuevo contenido ?
             </div>
         </div>
 
@@ -25,25 +25,12 @@
             </div>
         </div>
         <div class="container card-body text-center text-white text-center">
-            <img src="~/Media/Images/Grupo 100.png" alt="Alternate Text" class="img-fluid shadow" />
+            <img src="~/Media/Images/Grupo 100.png" alt="Alternate Text" class="img-fluid" />
         </div>
     }
 
-    <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
-
-        <div class="carousel-inner">
-            <div class="container">
-                <div id="carouselExampleInterval" class="container carousel slide" data-ride="carousel">
-
-
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="row">
-
-
         <div class="col-md-6 ">
             <div id="" class="carousel slide" data-ride="carousel">
 
@@ -53,7 +40,7 @@
 
                         <div class="carousel-inner">
                             @{int i = 0;}
-                            @foreach (var iterador in Model)
+                            @foreach (var iterador in Model.News)
                             {
                                 {
                                     i++;
@@ -75,39 +62,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-6">
 
             <h2 class="mb-2">Noticias destacadas</h2>
             <div class=" border" style="width:20rem">
-                @if (Model.Count() > 0)
-                {
 
-                    foreach (var item in Model)
-                    {
-                        <div class="">
-
-
-                            <img src="@Html.DisplayFor(modelItem => item.BannerImage)"
-                                 class="card-img border-0 " alt="..." style="width:20rem">
-
-                            <div class="card-body bg-primary rounded-bottom shadow blockquote" style="width:20rem">
-                                <h5 class="card-title"> @Html.DisplayFor(modelItem => item.Title)</h5>
-                                <p class="card-text col-12 text-truncate">@Html.DisplayFor(modelItem => item.Body)</p>
-                                <p class="card-text"><small class="text-muted"></small></p>
-                                @Html.ActionLink("Ver noticia", "Details", new { id = item.ID }, new {@class = "btn btn-dark btn-block"})
-                            </div>
-
-
-
-
-                        </div>
-                    }
-                }
-                else
-                {
-
-                    <p>No hay noticias que mostrar.</p>
-                }
             </div>
         </div>
     </div>
@@ -120,7 +79,7 @@
 <div class="container">
     <h2>PC Gaming</h2>
     <div class="row">
-        @foreach (var iterado in Model)
+        @foreach (var iterado in Model.News)
         {
             <div class="blog-thumbnail col-md-4" style="max-width: 250px;">
                 <img src="@Url.Content(iterado.BannerImage)" class="img-thumbnail" />
@@ -131,6 +90,13 @@
                 <span>@Html.DisplayFor(modelItem => iterado.UserID)</span>
                 <span>PC, Actualizaciones, Bugs</span>
                 <span>@Html.DisplayFor(modelItem => iterado.PublishDate)</span>
+            </div>
+        }
+        @foreach (var iterado in Model.comments)
+        {
+            <div class="blog-thumbnail col-md-4" style="max-width: 250px;">
+
+                <span>@Html.DisplayFor(modelItem => iterado.Content)</span>
             </div>
         }
     </div>
@@ -147,7 +113,7 @@
             <a class="btn btn-dark btn-block" href="@Url.Action("Index", "Index")" role="button">Crear mi cuenta</a>
         </div>
         <div class="col-md-6 container">
-            <img src="~/Media/Images/Grupo 40.png" alt="Alternate Text" class="card-img"/>
+            <img src="~/Media/Images/Grupo 40.png" alt="Alternate Text" class="card-img" />
         </div>
     </div>
 
@@ -169,7 +135,6 @@
         </div>
     </div>
 </div>
-
 
 
 

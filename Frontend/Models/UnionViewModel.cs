@@ -1,5 +1,4 @@
 ﻿using Backend.Entities;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +8,11 @@ namespace Frontend.Models
 {
     public class UnionViewModel
     {
-        public News News { get; set; }
-        public User User { get; set; }
+        public List<News> News { get; set;}
+        public List<User> Users { get; set; }
+        public List<Comment> comments { get; set;}
+        public List<Tag> Tags { get; set; }
+        public List<Favorite> Favorites { get; set; }
+
     }
 }
