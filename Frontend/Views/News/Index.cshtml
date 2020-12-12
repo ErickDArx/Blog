@@ -44,13 +44,30 @@
                                 {
                                     i++;
                                     var active = i == 1 ? "active" : "";
-                                    <div class="carousel-item @active">
-                                        <img src="@Url.Content(iterador.BannerImage)" class=" d-block w-100 rounded-lg shadow" alt="..." style="width:35rem;height:20rem">
-                                        <div class=" p-0 m-0 rounded-bottom" style="background-color: #FF1D42">
-                                            <div class="card-footer text-white">
+                                    <div class="carousel-item rounded-lg @active">
+                                        <img src="@Url.Content(iterador.BannerImage)" class=" d-block w-100 rounded-top shadow" alt="..." style="width:35rem;height:20rem">
+                                        <div class="rounded p-0 m-0" style="background-color: #FF1D42">
+                                            <div class="card-footer text-white rounded-bottom">
                                                 <div class="row" style="">
-                                                    <h4 class="col-12 text-truncate mt-3 mb-3 w-100">@Html.DisplayFor(modelItem => iterador.Title)</h4>
+                                                    <div class="col-8 border">
+                                                        <h5 class="text-break rounded-bottom font-weight-lighter col-12 text-truncate mt-3 mb-3 w-100">@Html.DisplayFor(modelItem => iterador.Title)</h5>
+                                                    
+                                                    </div>
 
+                                                    @foreach (var objeto in Model.Users)
+                                                    {
+                                                        if (objeto.ID == iterador.UserID)
+                                                        {
+
+                                                <div class="col-4 border pt-1">
+                                                    <img src="@Url.Content(objeto.ProfileImage)" alt=""
+                                                         class="rounded-circle bg-light shadow-lg float-right" style="width:3rem;height:3rem" />
+                                                
+                                                </div>
+
+                                                        }
+
+                                                    }
                                                 </div>
                                             </div>
 
@@ -84,26 +101,26 @@
                     }
                     else
                     {
-                <div class="row text-white rounded-lg m-2 shadow" style=" background-color: #0F3460">
+                        <div class="row text-white rounded-lg m-2 shadow" style=" background-color: #0F3460">
 
-                    <div class="col-4 justify-content-center bg-light">
-                        <img src="@Url.Content(iterado.BannerImage)" class="img-fluid rounded mx-auto d-block"
-                             style="height:7rem" />
-                        <a href="@Url.Action("Details", new { id=iterado.ID })" class=" stretched-link"></a>
-                    </div>
+                            <div class="col-4 justify-content-center bg-light">
+                                <img src="@Url.Content(iterado.BannerImage)" class="img-fluid rounded mx-auto d-block"
+                                     style="height:7rem" />
+                                <a href="@Url.Action("Details", new { id=iterado.ID })" class=" stretched-link"></a>
+                            </div>
 
-                    <div class="font-weight-bold h5 col-8 text-break">
-                        @Html.DisplayFor(modelItem => iterado.Title)
+                            <div class="font-weight-bold h5 col-8 text-break">
+                                @Html.DisplayFor(modelItem => iterado.Title)
 
-                        <div class="font-weight-light text-truncate">
-                            @Html.DisplayFor(modelItem => iterado.Body)
+                                <div class="font-weight-light text-truncate">
+                                    @Html.DisplayFor(modelItem => iterado.Body)
+                                </div>
+                                <a href="@Url.Action("Details", new { id=iterado.ID })" class=" stretched-link"></a>
+                            </div>
+
+
+
                         </div>
-                        <a href="@Url.Action("Details", new { id=iterado.ID })" class=" stretched-link"></a>
-                    </div>
-
-
-
-                </div>
                     }
 
                 }
@@ -118,31 +135,31 @@
 
 
 @*<div class="container">
-    <h2>PC Gaming</h2>
-    <div class="row">
-        @foreach (var iterado in Model.News)
-        {
-            <div class="blog-thumbnail col-md-4" style="max-width: 250px;">
-                <img src="@Url.Content(iterado.BannerImage)" class="img-thumbnail" />
-                <h3>@Html.DisplayFor(modelItem => iterado.Title)</h3>
-                <p>
+        <h2>PC Gaming</h2>
+        <div class="row">
+            @foreach (var iterado in Model.News)
+            {
+                <div class="blog-thumbnail col-md-4" style="max-width: 250px;">
+                    <img src="@Url.Content(iterado.BannerImage)" class="img-thumbnail" />
+                    <h3>@Html.DisplayFor(modelItem => iterado.Title)</h3>
+                    <p>
 
-                </p>
-                <span>@Html.DisplayFor(modelItem => iterado.UserID)</span>
-                <span>PC, Actualizaciones, Bugs</span>
-                <span>@Html.DisplayFor(modelItem => iterado.PublishDate)</span>
-            </div>
-        }
-        @foreach (var iterado in Model.comments)
-        {
-            <div class="blog-thumbnail col-md-4" style="max-width: 250px;">
+                    </p>
+                    <span>@Html.DisplayFor(modelItem => iterado.UserID)</span>
+                    <span>PC, Actualizaciones, Bugs</span>
+                    <span>@Html.DisplayFor(modelItem => iterado.PublishDate)</span>
+                </div>
+            }
+            @foreach (var iterado in Model.comments)
+            {
+                <div class="blog-thumbnail col-md-4" style="max-width: 250px;">
 
-                <span>@Html.DisplayFor(modelItem => iterado.Content)</span>
-            </div>
-        }
-    </div>
+                    <span>@Html.DisplayFor(modelItem => iterado.Content)</span>
+                </div>
+            }
+        </div>
 
-</div>*@
+    </div>*@
 
 <br />
 
@@ -154,7 +171,7 @@
             <a class="btn btn-dark btn-block" href="@Url.Action("Index", "Index")" role="button">Crear mi cuenta</a>
         </div>
         <div class="col-md-6 container">
-            <img src="~/Media/Images/Grupo 40.png" alt="Alternate Text" class="card-img" style="width:20rem"/>
+            <img src="~/Media/Images/Grupo 40.png" alt="Alternate Text" class="card-img" style="width:20rem" />
         </div>
     </div>
 
