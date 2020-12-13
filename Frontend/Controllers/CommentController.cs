@@ -37,25 +37,29 @@ namespace Frontend.Controllers
             return comment;
         }
 
-        // GET: Comments
+         // GET: Comments
         public ActionResult Index()
         {
-
-            List<Comment> comments;
+           
+            List<Comment> lista;
             using (UnitOfWork<Comment> unit = new UnitOfWork<Comment>(new BDContext()))
             {
-                comments = unit.genericDAL.GetAll().ToList();
+                lista = unit.genericDAL.GetAll().ToList();
             }
-
-            List<CommentViewModel> lista = new List<CommentViewModel>();
+            
+            
+            List<CommentViewModel> comments = new List<CommentViewModel>();
+          
 
             foreach (var item in comments)
             {
                 lista.Add(this.Convert(item));
             }
             Session["comentarios"] = lista;
-            return View();
+
+            return View(comments);
         }
+
 
         public ActionResult Create()
         {
