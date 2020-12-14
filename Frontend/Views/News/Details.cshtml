@@ -4,9 +4,13 @@
     ViewBag.Title = "Details";
 }
 
-    <div>
-        <img class="w-100" src="@Html.DisplayFor(model => model.BannerImage)" alt="" />
+    <div class="text-center " style="background-color:#FF1D44;">
+
+        <img src="@Html.DisplayFor(model => model.BannerImage)" alt="" 
+             class="text-center shadow-lg" style="width:25rem;height:50%;"/>
+
     </div>
+
     <div class="container">
         <div class="text-center shadow card border-0" style="margin-top: -4rem;padding: 0rem;background:#FF1D42">
             <div class="row text-sm-center text-white">
@@ -25,7 +29,7 @@
 
                 <!--Arreglar el formato de la fecha-->
                 <div class="col-sm-4 text-left pt-2 mt-4 text-center align-items-center">
-                    <h6>@Html.DisplayFor(model => model.PublishDate)</h6>
+                    <h6>@Html.DisplayFor(model => model.PublishDate.Date)</h6>
                     <div class="form-group">
 
                     </div>
@@ -39,9 +43,7 @@
         <div class="mt-4">
             <div class="row container text-white text-center">
                 <!--Ocupo los tags en esta parte-->
-                <p class="rounded-pill bg-primary col-3 m-1">Aventuras</p>
-                <p class="rounded-pill bg-primary col-3 m-1">Aventuras</p>
-                <p class="rounded-pill bg-primary col-3 m-1">Aventuras</p>
+
             </div>
 
         </div>
@@ -54,14 +56,23 @@
             @Html.DisplayFor(model => model.Body)
         </div>
 
-        <!--Hacer una validacion para que solo el creador de la noticia pueda editar su publicacion-->
-        <p class="btn btn-block mt-4" style="background: #FF1D42">
-            @Html.ActionLink("Editar esta noticia", "Edit", new { id = Model.ID }, new { @class = "text-white" })
 
-        </p>
-        <p class="btn btn-block text-dark">
-            @Html.ActionLink("Regresar al Menu Principal", "Index", new { @class = "" })
-        </p>
+        @if (Session["User"] == null)
+        {
+            <p class="btn btn-block text-dark">
+                @Html.ActionLink("Regresar al Menu Principal", "Index", new { @class = "" })
+            </p>
+        }
+        else
+        {
+            <!--Hacer una validacion para que solo el creador de la noticia pueda editar su publicacion-->
+            <p class="btn btn-block mt-4" style="background: #FF1D42">
+                @Html.ActionLink("Editar esta noticia", "Edit", new { id = Model.ID }, new { @class = "text-white" })
+
+            </p>
+        }
+
+
 
 
 

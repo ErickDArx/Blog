@@ -62,7 +62,7 @@
                                                 <div class="col-4  pt-1">
                                                     <img src="@Url.Content(objeto.ProfileImage)" alt=""
                                                          class="rounded-circle bg-light shadow-lg float-right" style="width:3rem;height:3rem" />
-                                                
+                                                @Session["Nombre"]  
                                                 </div>
 
                                                         }
@@ -101,6 +101,9 @@
                     }
                     else
                     {
+
+
+
                         <div class="row text-white rounded-lg m-2 shadow" style=" background-color: #0F3460">
 
                             <div class="col-4 justify-content-center bg-light">

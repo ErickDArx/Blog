@@ -51,7 +51,6 @@ namespace Frontend.Controllers
             unionViewModel.News = bd.News.ToList();
             unionViewModel.comments = bd.Comments.ToList();
             unionViewModel.Users = bd.Users.ToList();
-
             return View(unionViewModel);
         }
 
@@ -111,14 +110,12 @@ namespace Frontend.Controllers
         public ActionResult Details()
         {
 
-            NewsViewModel user = new NewsViewModel { };
-
-            using (UnitOfWork<User> unit = new UnitOfWork<User>(new BDContext()))
-            {
-                user.Users = unit.genericDAL.GetAll();
-            }
-
-            return View(this.Convert(user));
+            BDContext bd = new BDContext();
+            UnionViewModel unionViewModel = new UnionViewModel();
+            unionViewModel.News = bd.News.ToList();
+            unionViewModel.comments = bd.Comments.ToList();
+            unionViewModel.Users = bd.Users.ToList();
+            return View(unionViewModel);
         }
 
         [HttpGet]
