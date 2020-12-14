@@ -41,6 +41,7 @@ namespace Frontend.Controllers
                 Session["Name"] = user.FirtName;
                 Session["LastName"] = user.LastName;
                 Session["Image"] = user.ProfileImage;
+                Session["Rol"] = user.UserRol;
 
                 var authTicket = new FormsAuthenticationTicket(user.Email, true, 100000);
                 var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(authTicket));

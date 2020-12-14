@@ -4,14 +4,18 @@
     ViewBag.Title = "Panel de administración";
 }
 
-
+@if (Session["Rol"] == null)
+{
+    Response.Redirect("http://localhost:62971/News/Index");
+}
+else
+{
     <div class="container">
 
         <div class="row">
             <div class="col-12 text-center mt-4">
                 <div class="">
-                    <img src="@Session["Image"]" alt="" class="shadow img-fluid btn bg-primary rounded-circle p-5" 
-                         />
+                    <img src="@Session["Image"]" alt="" class="shadow img-fluid btn bg-primary rounded-circle p-5" />
                 </div>
             </div>
             <div class="col-12 text-center border-top m-2">
@@ -22,17 +26,13 @@
         </div>
 
         <div class="container card p-2">
-            <h4>Mi Panel de control</h4>
-
-
-            <h4>Mis publicaci&oacute;nes favoritas</h4>
-
-
-
-            <h4>Mis comentarios</h4>
+            <h4>Crear Publicacion</h4>
+            <a  class="text-white nav-link text-center btn btn-dark" href="@Url.Action("Create","News")"> Crear <span class="sr-only">(current)</span></a>
         </div>
 
 
 
 
     </div>
+}
+

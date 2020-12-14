@@ -18,8 +18,8 @@ namespace Frontend.Controllers
                 LastName = user.LastName,
                 Email = user.Email,
                 UserPassword = user.UserPassword,
-                ProfileImage = user.ProfileImage,
-                UserRol=user.UserRol='2',
+                ProfileImage = user.ProfileImage = default,
+                UserRol=user.UserRol='1',
                 
             };
         }
@@ -59,7 +59,7 @@ namespace Frontend.Controllers
             {
                 unit.genericDAL.Add(user);
                 unit.Complete();
-                }
+             }
                 return RedirectToAction("Index", "Profile");
             }
             else
