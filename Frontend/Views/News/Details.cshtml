@@ -60,7 +60,7 @@
         </div>
 
 
-        @if (Session["User"] == null)
+        @if (Session["UserId"].Equals(Model.UserID))
         {
             <p class="btn btn-block text-dark">
                 @Html.ActionLink("Regresar al Menu Principal", "Index", new { @class = "" })

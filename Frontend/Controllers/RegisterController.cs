@@ -13,13 +13,12 @@ namespace Frontend.Controllers
         {
             return new User
             {
-                ID = user.UserID,
-                FirtName = user.FirstName,
+                FirtName = user.FirtName,
                 LastName = user.LastName,
                 Email = user.Email,
                 UserPassword = user.UserPassword,
-                ProfileImage = user.ProfileImage = default,
-                UserRol=user.UserRol='1',
+                ProfileImage = user.ProfileImage = "Default",
+                UserRol=user.UserRol=1,
                 
             };
         }
@@ -28,8 +27,7 @@ namespace Frontend.Controllers
         {
             return new UserViewModel
             {
-                UserID = userViewModel.ID,
-                FirstName = userViewModel.FirtName,
+                FirtName = userViewModel.FirtName,
                 LastName = userViewModel.LastName,
                 Email = userViewModel.Email,
                 UserPassword = userViewModel.UserPassword,

@@ -12,7 +12,7 @@ namespace Frontend.Models
         [Key]
         public int UserID { get; set; }
 
-        public string FirstName { get; set; }
+        public string FirtName { get; set; }
         public string LastName { get; set; }
         [Required(ErrorMessage = "Debe ingresar un correo electrónico")]
         public string Email { get; set; }
