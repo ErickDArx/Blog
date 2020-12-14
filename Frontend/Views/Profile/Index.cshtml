@@ -4,31 +4,35 @@
     ViewBag.Title = "Panel de administración";
 }
 
+
     <div class="container">
 
         <div class="row">
-            <div class="col-4 border text-center">
-                <div class="btn bg-primary rounded-circle p-5">
-                    <img src="" alt=""/>
+            <div class="col-12 text-center mt-4">
+                <div class="">
+                    <img src="@Session["Image"]" alt="" class="shadow img-fluid btn bg-primary rounded-circle p-5" 
+                         />
                 </div>
             </div>
-            <div class="col-7 border m-1">
-                <h2 class="text-black-50">@Session["Name"]</h2>
-                <h2 class="text-black-50">@Session["LastName"]</h2>
+            <div class="col-12 text-center border-top m-2">
+                <h2 class="mt-2">@Session["Name"] @Session["LastName"]</h2>
+
 
             </div>
         </div>
 
+        <div class="container card p-2">
+            <h4>Mi Panel de control</h4>
 
-        <h1>Administraci&oacute;n</h1>
-        <h2>Panel de control</h2>
-        <p>@Html.ActionLink("Crear publicación", "Create", "News")</p>
 
-        <p>@Html.ActionLink("Listar publicaciónes", "Index", "News")</p>
+            <h4>Mis publicaci&oacute;nes favoritas</h4>
 
-        <h2>General</h2>
 
-        <h3>Mis publicaci&oacute;nes favoritas</h3>
 
-        <h3>Mis comentarios</h3>
+            <h4>Mis comentarios</h4>
+        </div>
+
+
+
+
     </div>

@@ -4,29 +4,38 @@
     ViewBag.Title = "Login";
 }
 
-<div class="container">
-    <p>
-        @Session["News"];
-    </p>
-    <h1 class="card-title text-center">Iniciar sesi&oacute;n</h1>
-    @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-        <div class="form-horizontal">
-            <div class="col-md-12 mb-3">
-                <label for="">Correo</label>
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "micorreo@mail.com", @id = "correo", type = "email", @style = "max-width: 100%" } })
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-4 float-right">
+                <img src="https://www.xtrafondos.com/wallpapers/vertical/los-santos-gta-v-3230.jpg" alt="Alternate Text" style="width:20rem" class="card-img-top"/>
             </div>
-            <div class="col-md-12 mb-3">
-                <label>Contraseña</label>
-                @Html.EditorFor(model => model.UserPassword, new { htmlAttributes = new { @class = "form-control", @placeholder = "****************", @style = "max-width: 100%", Type = "password" } })
-            </div>
-            <div class="col-md-12 mb-2">
-                <input type="submit" value="Inicia Sesion" class="btn btn-primary btn-block" />
-            </div>
-            <div class="col-md-12">
-                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+            <div class="col-8 card">
+                <p>
+                    @Session["News"]
+                </p>
+                <h1 class="card-title text-center">Iniciar sesi&oacute;n</h1>
+                @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        <div class="col-md-12 mb-3">
+                            <label for="">Correo</label>
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "micorreo@mail.com", @id = "correo", type = "email", @style = "max-width: 100%" } })
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label>Contraseña</label>
+                            @Html.EditorFor(model => model.UserPassword, new { htmlAttributes = new { @class = "form-control", @placeholder = "****************", @style = "max-width: 100%", Type = "password" } })
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <input type="submit" value="Inicia Sesion" class="btn btn-primary btn-block" />
+                        </div>
+                        <div class="col-md-12">
+                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                }
             </div>
         </div>
-    }
-</div>
+    </div>
+
+
