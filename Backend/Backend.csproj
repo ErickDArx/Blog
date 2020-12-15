@@ -68,8 +68,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\CommentsDALImplementacion.cs" />
     <Compile Include="DAL\DALGenericImplementation.cs" />
     <Compile Include="DAL\IDALGeneric.cs" />
+    <Compile Include="DAL\INewsDAL.cs" />
+    <Compile Include="DAL\NewsDALImplementacion.cs" />
     <Compile Include="DAL\UnitOfWork.cs" />
     <Compile Include="Entities\Blog.Context.cs">
       <AutoGen>True</AutoGen>
@@ -107,6 +110,7 @@
     <Compile Include="Entities\User.cs">
       <DependentUpon>Blog.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\ICommentsDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -17,7 +17,7 @@ namespace Frontend.Controllers
                 LastName = user.LastName,
                 Email = user.Email,
                 UserPassword = user.UserPassword,
-                ProfileImage = user.ProfileImage = "Default",
+                ProfileImage = user.ProfileImage = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/User_font_awesome.svg/1200px-User_font_awesome.svg.png",
                 UserRol=user.UserRol=1,
                 
             };

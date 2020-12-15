@@ -84,6 +84,18 @@ namespace Frontend.Controllers
             return RedirectToAction("Index", "News");
         }
 
+        public ActionResult Delete(int id)
+
+        {
+            News news;
+            using (UnitOfWork<News> unit = new UnitOfWork<News>(new BDContext()))
+            {
+                news = unit.genericDAL.Get(id);
+            }
+
+            return View(this.Convert(news));
+        }
+
         [HttpPost]
         public ActionResult Delete(News news)
         {
@@ -96,15 +108,28 @@ namespace Frontend.Controllers
             return RedirectToAction("Index", "News");
         }
 
+
         public ActionResult Edit(int id)
+
         {
-            News blog;
+            News news;
             using (UnitOfWork<News> unit = new UnitOfWork<News>(new BDContext()))
             {
-                blog = unit.genericDAL.Get(id);
+                news = unit.genericDAL.Get(id);
             }
 
-            return View(this.Convert(blog));
+            return View(this.Convert(news));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(News news)
+        {
+            using (UnitOfWork<News> unit = new UnitOfWork<News>(new BDContext()))
+            {
+                unit.genericDAL.Update(news);
+                unit.Complete();
+            }
+            return RedirectToAction("Index","News");
         }
 
         public ActionResult Details()
